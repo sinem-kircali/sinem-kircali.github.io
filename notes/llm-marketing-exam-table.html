@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLMs for Marketing — Exam Summary Table</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f14;
+    --surface: #16181f;
+    --surface2: #1e2029;
+    --border: #2a2d3a;
+    --accent: #6ee7c0;
+    --accent2: #a78bfa;
+    --accent3: #f59e0b;
+    --accent4: #f472b6;
+    --accent5: #60a5fa;
+    --accent6: #34d399;
+    --text: #e2e4ef;
+    --text-muted: #7c7f99;
+    --text-dim: #4a4d65;
+    --week-colors: #6ee7c0, #a78bfa, #f59e0b, #f472b6, #60a5fa, #34d399;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    padding: 32px 20px 60px;
+    min-width: 1200px;
+  }
+
+  .header {
+    margin-bottom: 36px;
+    border-left: 4px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .header p {
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+  }
+
+  table {
+    min-width: 1800px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  thead th {
+    background: var(--surface2);
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+
+  thead th:first-child {
+    width: 68px;
+    text-align: center;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  td {
+    padding: 16px 14px;
+    vertical-align: top;
+    border-right: 1px solid var(--border);
+  }
+
+  td:last-child { border-right: none; }
+
+  /* Week badge column */
+  .week-cell {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .week-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 1;
+    border: 2px solid;
+  }
+
+  .week-badge .wlabel {
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    opacity: 0.75;
+  }
+
+  tr:nth-child(1) .week-badge { color: #6ee7c0; border-color: #6ee7c0; background: rgba(110,231,192,0.08); }
+  tr:nth-child(2) .week-badge { color: #a78bfa; border-color: #a78bfa; background: rgba(167,139,250,0.08); }
+  tr:nth-child(3) .week-badge { color: #f59e0b; border-color: #f59e0b; background: rgba(245,158,11,0.08); }
+  tr:nth-child(4) .week-badge { color: #f472b6; border-color: #f472b6; background: rgba(244,114,182,0.08); }
+  tr:nth-child(5) .week-badge { color: #60a5fa; border-color: #60a5fa; background: rgba(96,165,250,0.08); }
+  tr:nth-child(6) .week-badge { color: #34d399; border-color: #34d399; background: rgba(52,211,153,0.08); }
+
+  /* Left accent strip per row */
+  tr:nth-child(1) td:nth-child(2) { border-left: 3px solid #6ee7c0; }
+  tr:nth-child(2) td:nth-child(2) { border-left: 3px solid #a78bfa; }
+  tr:nth-child(3) td:nth-child(2) { border-left: 3px solid #f59e0b; }
+  tr:nth-child(4) td:nth-child(2) { border-left: 3px solid #f472b6; }
+  tr:nth-child(5) td:nth-child(2) { border-left: 3px solid #60a5fa; }
+  tr:nth-child(6) td:nth-child(2) { border-left: 3px solid #34d399; }
+
+  tr:nth-child(1) { background: rgba(110,231,192,0.025); }
+  tr:nth-child(2) { background: rgba(167,139,250,0.025); }
+  tr:nth-child(3) { background: rgba(245,158,11,0.025); }
+  tr:nth-child(4) { background: rgba(244,114,182,0.025); }
+  tr:nth-child(5) { background: rgba(96,165,250,0.025); }
+  tr:nth-child(6) { background: rgba(52,211,153,0.025); }
+
+  .cell-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .cell-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .cell-body {
+    color: var(--text);
+    font-size: 12.5px;
+  }
+
+  /* Method block */
+  .method-block {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .method-block:last-child { margin-bottom: 0; }
+
+  .method-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .method-arch {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .method-arch span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+  }
+
+  .label-arch {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+    margin-bottom: 3px;
+  }
+
+  .larch { background: rgba(96,165,250,0.15); color: #60a5fa; }
+  .ltask { background: rgba(52,211,153,0.15); color: #34d399; }
+
+  /* Pipeline steps */
+  .pipeline-steps {
+    list-style: none;
+    counter-reset: step;
+    margin-bottom: 8px;
+  }
+
+  .pipeline-steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .pipeline-steps li::before {
+    content: counter(step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  tr:nth-child(1) .pipeline-steps li::before { background: rgba(110,231,192,0.2); color: #6ee7c0; }
+  tr:nth-child(2) .pipeline-steps li::before { background: rgba(167,139,250,0.2); color: #a78bfa; }
+  tr:nth-child(3) .pipeline-steps li::before { background: rgba(245,158,11,0.2); color: #f59e0b; }
+  tr:nth-child(4) .pipeline-steps li::before { background: rgba(244,114,182,0.2); color: #f472b6; }
+  tr:nth-child(5) .pipeline-steps li::before { background: rgba(96,165,250,0.2); color: #60a5fa; }
+  tr:nth-child(6) .pipeline-steps li::before { background: rgba(52,211,153,0.2); color: #34d399; }
+
+  .output-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .output-tag::before {
+    content: '▶';
+    font-size: 8px;
+    color: var(--accent3);
+  }
+
+  .eval-tag {
+    display: inline-block;
+    background: rgba(245,158,11,0.12);
+    color: #f59e0b;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Sections divider */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+    margin-top: 8px;
+  }
+
+  /* Limitation items */
+  .limit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .limit-item::before {
+    content: '⚠';
+    font-size: 10px;
+    color: #f59e0b;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Next steps */
+  .next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .next-item::before {
+    content: '→';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  .mkt-tag {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .mkt-tag::before {
+    content: '📊';
+    font-style: normal;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Keywords */
+  .kw-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .kw {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    border: 1px solid;
+  }
+
+  tr:nth-child(1) .kw { color: #6ee7c0; border-color: rgba(110,231,192,0.3); background: rgba(110,231,192,0.07); }
+  tr:nth-child(2) .kw { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.07); }
+  tr:nth-child(3) .kw { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.07); }
+  tr:nth-child(4) .kw { color: #f472b6; border-color: rgba(244,114,182,0.3); background: rgba(244,114,182,0.07); }
+  tr:nth-child(5) .kw { color: #60a5fa; border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.07); }
+  tr:nth-child(6) .kw { color: #34d399; border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+
+  /* Articles column */
+  .article-block {
+    margin-bottom: 12px;
+    padding: 9px 11px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border-left: 3px solid var(--text-dim);
+  }
+  .article-block:last-child { margin-bottom: 0; }
+
+  .article-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .article-ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .article-row {
+    margin-bottom: 5px;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+  .article-row-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  tr:nth-child(4) .article-block { border-left-color: #f472b6; }
+  tr:nth-child(5) .article-block { border-left-color: #60a5fa; }
+
+  /* Articles column */
+  .art-block {
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .art-block:last-child { margin-bottom: 0; }
+
+  .art-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .art-author {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-dim);
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+  }
+  .art-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .art-row-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    height: fit-content;
+  }
+  .art-claim  { background: rgba(167,139,250,0.15); color: #a78bfa; }
+  .art-method { background: rgba(96,165,250,0.15);  color: #60a5fa; }
+  .art-concl  { background: rgba(52,211,153,0.15);  color: #34d399; }
+  .art-link   { background: rgba(245,158,11,0.15);  color: #f59e0b; }
+  .art-row-text { color: var(--text-muted); }
+
+  /* Questions column */
+  .q-block {
+    margin-bottom: 12px;
+    padding: 9px 11px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .q-block:last-child { margin-bottom: 0; }
+
+  .q-label {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+  }
+  .q-label-real {
+    background: rgba(245,158,11,0.18);
+    color: #f59e0b;
+  }
+  .q-label-gen {
+    background: rgba(96,165,250,0.15);
+    color: #60a5fa;
+  }
+  .q-text {
+    font-size: 12px;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.55;
+  }
+  .q-answer {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    border-top: 1px solid var(--border);
+    padding-top: 5px;
+    margin-top: 4px;
+  }
+  .q-answer b {
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-right: 3px;
+  }
+
+  /* Takeaways */
+  .takeaway-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e2e4ef;
+    line-height: 1.5;
+  }
+  .takeaway-item::before {
+    content: '★';
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  tr:nth-child(1) .takeaway-item::before { color: #6ee7c0; }
+  tr:nth-child(2) .takeaway-item::before { color: #a78bfa; }
+  tr:nth-child(3) .takeaway-item::before { color: #f59e0b; }
+  tr:nth-child(4) .takeaway-item::before { color: #f472b6; }
+  tr:nth-child(5) .takeaway-item::before { color: #60a5fa; }
+  tr:nth-child(6) .takeaway-item::before { color: #34d399; }
+
+  /* Connection tag in Topic column */
+  .connection-tag {
+    margin-top: 9px;
+    padding: 7px 9px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 5px;
+    border-left: 2px solid var(--text-dim);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .connection-tag b {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* When to use */
+  .use-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+  .use-item::before {
+    content: '✓';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #34d399;
+    flex-shrink: 0;
+  }
+  .use-not {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+  .use-not::before {
+    content: '✗';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #f472b6;
+    flex-shrink: 0;
+  }
+  /* Keyword sub-sections */
+  .kw-section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  .kw-section-label:first-child { margin-top: 0; }
+
+  .no-pipeline {
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>LLMs for Marketing — FEM11154<br>Exam Summary Table</h1>
+  <p>Weeks 1–6 · Sources: Study Notes (W1–W6) + Hands-On LLMs Ch. 1–6, 11</p>
+</div>
+
+<div class="table-wrapper">
+<table>
+  <thead>
+    <tr>
+      <th style="width:58px">Wk</th>
+      <th style="width:185px">Topic &amp; Marketing Purpose</th>
+      <th style="width:210px">Methods — Architecture / Task</th>
+      <th style="width:235px">Pipeline &amp; Output</th>
+      <th style="width:155px">Limitations</th>
+      <th style="width:145px">What Comes Next</th>
+      <th style="width:140px">When to Use / Choose Over X</th>
+      <th style="width:150px">Key Takeaways</th>
+      <th style="width:195px">Required Articles</th>
+      <th style="width:215px">Exam Questions</th>
+      <th style="width:160px">Keywords &amp; Concepts</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- WEEK 1 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>1</div>
+      </td>
+      <td>
+        <div class="cell-title">Text as Data &amp; Word Embeddings</div>
+        <div class="cell-subtitle">Ch. 1–2 · Study Notes W1</div>
+        <div class="cell-body">How to represent text numerically so models can learn from it. Marketing purpose: extract brand associations, competitive positioning, and attribute perceptions from review text without any labelling.</div>
+        <div class="connection-tag"><b>Starting point.</b> No prior week — this establishes the core idea that words can be vectors, and that similarity between vectors = semantic relatedness. Everything in weeks 2–6 builds on this intuition.</div>
+        <div class="connection-tag" style="margin-top:6px; border-left-color:#f59e0b"><b>Reliability vs Validity:</b> Text data can give reproducible (reliable) results that are still wrong (invalid). Reviews skew toward 5 stars — only very happy and very unhappy customers write them. Findings show correlation/association, not causation. Comparisons between brands are more robust if the bias is similar across brands.</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">One-Hot Encoding</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Sparse binary vector — one 1 at the word's index, all other positions 0</div>
+          <div><span class="label-arch ltask">Task</span> Represent individual words as vectors; precursor to embeddings</div>
+          <div class="method-arch">No meaning captured — "excellent" and "great" are as far apart as "excellent" and "terrible". Vocabulary size = vector length, making it extremely high-dimensional.</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Word-Vector Data Model</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Document-term binary matrix — each document is one row, each vocabulary word is one column (1 = present, 0 = absent)</div>
+          <div><span class="label-arch ltask">Task</span> Represent documents as vectors for analysis; traditional starting point for text-as-data</div>
+          <div class="method-arch">Ignores word order and location. BoW is essentially built on top of this — BoW adds word counts instead of just presence/absence. One-hot = word level; word-vector model = document level.</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Bag-of-Words (BoW)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Count matrix over vocabulary</div>
+          <div><span class="label-arch ltask">Task</span> Document representation; baseline feature</div>
+          <div class="method-arch">No word order, no meaning captured</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Word2Vec (2013)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Shallow neural net (skip-gram + negative sampling)</div>
+          <div><span class="label-arch ltask">Task</span> Learn static word embeddings from context windows</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">GloVe (2014)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Matrix factorization of co-occurrence matrix</div>
+          <div><span class="label-arch ltask">Task</span> Static word embeddings; brand positioning</div>
+        </div>
+      </td>
+      <td>
+        <div class="section-label">One-Hot Encoding</div>
+        <ul class="pipeline-steps">
+          <li>Define vocabulary (all unique words)</li>
+          <li>Assign each word a unique index</li>
+          <li>Represent each word as a vector of length = vocab size, with 1 at its index and 0 everywhere else</li>
+        </ul>
+        <div class="output-tag">Sparse binary word vector (vocab_size × 1)</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Word-Vector Data Model</div>
+        <ul class="pipeline-steps">
+          <li>Define vocabulary across all documents</li>
+          <li>For each document, record 1 if word is present, 0 if absent</li>
+          <li>Result: document-term binary matrix (n_docs × vocab_size)</li>
+        </ul>
+        <div class="output-tag">Binary document-term matrix</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Bag-of-Words (BoW)</div>
+        <ul class="pipeline-steps">
+          <li>Define vocabulary across all documents</li>
+          <li>For each document, count how often each vocabulary word appears</li>
+          <li>Result: document-term count matrix (n_docs × vocab_size)</li>
+        </ul>
+        <div class="output-tag">Count-based document-term matrix</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Word2Vec Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Slide a window over text to generate neighbouring word pairs</li>
+          <li>Train neural network: are these two words neighbours? (1/0)</li>
+          <li>Skip-gram: predict context words from centre word</li>
+          <li>Negative sampling: add random non-neighbour pairs as negatives</li>
+          <li>Update embeddings so neighbours get similar vectors</li>
+        </ul>
+        <div class="output-tag">Static word embedding matrix</div>
+        <div class="section-divider"></div>
+        <div class="section-label">GloVe Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Preprocess text (stemming, min-frequency filter)</li>
+          <li>Build co-occurrence matrix within sliding window</li>
+          <li>Minimize GloVe objective: log(X_ij) ≈ w_i·w_j + b_i + b_j</li>
+          <li>Output: word embedding matrix (e.g. 50-dim)</li>
+          <li>Compute cosine similarities between word vectors</li>
+        </ul>
+        <div class="output-tag">Word embedding matrix → similarity table</div>
+        <div class="eval-tag">Eval: cosine similarity scores; intrinsic word analogy tests</div>
+        <div class="section-divider"></div>
+        <div class="section-label">↳ Marketing Application: Brand Positioning</div>
+        <div style="font-size:11.5px; color:var(--text-muted); margin-bottom:6px;">Uses the GloVe embeddings above — not a separate method.</div>
+        <ul class="pipeline-steps">
+          <li>Select attribute words (e.g. "clean", "friendli") + competitor brand names</li>
+          <li>Look up their embeddings from the trained GloVe matrix</li>
+          <li>Compute pairwise cosine similarities between each brand and each attribute</li>
+        </ul>
+        <div class="output-tag">Brand × attribute similarity table → perceptual map</div>
+      </td>
+      <td>
+        <div class="limit-item"><b style="color:var(--text)">One-Hot:</b> All words are equidistant — "excellent" and "great" are as different as "excellent" and "terrible"; no semantic meaning captured</div>
+        <div class="limit-item"><b style="color:var(--text)">Word-Vector / BoW:</b> Ignores word order — "not bad" and "bad not" get identical representations; no meaning, only presence/counts</div>
+        <div class="limit-item"><b style="color:var(--text)">GloVe / Word2Vec:</b> Static embeddings — "bank" gets the same vector regardless of context (financial vs river)</div>
+        <div class="limit-item"><b style="color:var(--text)">Cosine similarity:</b> Reflects language patterns in the corpus only, not objective truth — high sim(Hilton, clean) means reviewers use those words together, not that Hilton IS clean</div>
+        <div class="limit-item" style="border-left: 2px solid #f59e0b; padding-left:6px"><b style="color:#f59e0b">⚠ Cosine gotcha:</b> Raw scores detect sentiment STRENGTH (how emotional a review is). DIFFERENCES detect valence (positive vs negative direction). Example: sim(doc, 'positive review')=0.404, sim(doc, 'negative review')=0.410 — both high because the review is strongly emotional. The difference (0.404−0.410=−0.006) tells you it is slightly negative. Always use cosine(doc, positive label) MINUS cosine(doc, negative label) for sentiment direction.</div>
+        <div class="limit-item"><b style="color:var(--text)">All W1 methods:</b> Results depend on corpus quality and representativeness; reviews skew toward extreme opinions</div>
+      </td>
+      <td>
+        <div class="next-item">Week 2 extends to contextualized embeddings via the Transformer architecture (BERT)</div>
+        <div class="next-item">Week 3 uses these embeddings as features for document classification</div>
+        <div class="mkt-tag">Brand benchmarking from review text — no surveys or human annotation needed</div>
+      </td>
+      <td>
+        <div class="use-item">You have review/social text and want brand associations or competitive positioning</div>
+        <div class="use-item">No labelled data available — GloVe is fully unsupervised</div>
+        <div class="use-item">Need interpretable word relationships (cosine similarity tables)</div>
+        <div class="use-not">Need sentence- or document-level understanding → use SBERT (W3)</div>
+        <div class="use-not">Words have multiple meanings (e.g. "bank") → use contextualised embeddings (W2)</div>
+        <div class="use-not">Need classification with labels → skip to W3</div>
+      </td>
+      <td>
+        <div class="takeaway-item">Cosine similarity reflects language patterns in the corpus, not objective truth — high sim(Hilton, clean) means reviewers use those words together, not that Hilton IS clean</div>
+        <div class="takeaway-item">GloVe embeddings are static — "bank" gets the same vector regardless of context; this is the fundamental limitation that W2 solves with attention</div>
+        <div class="takeaway-item">Word arithmetic works because embedding differences capture semantic directions, enabling competitive benchmarking without surveys</div>
+        <div class="takeaway-item">RNNs processed text sequentially and compressed the entire input into a single context vector — this struggled with long sequences and couldn't be parallelised. Attention (2017) solved this by creating a direct link between any two tokens, enabling parallel training and full context access</div>
+      </td>
+      <td>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim); font-style:italic;">No required articles this week.</div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Sample Exam</div>
+          <div class="q-text">A researcher finds cos(Hilton, luxury) = 0.62 and cos(Hilton, budget) = 0.35 and concludes Hilton is a luxury brand. Evaluate this conclusion.</div>
+          <div class="q-answer"><b>Answer</b> Partially supported but flawed. Embeddings reflect how reviewers write about Hilton, not objective brand truth. The sample may not be representative. The finding is only meaningful relative to competitors — if Marriott scores 0.70 on luxury, Hilton looks less luxurious. High similarity means words co-occur in similar contexts, not that all reviews praise Hilton as luxurious.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Study Notes Q</div>
+          <div class="q-text">Explain why a bag-of-words representation cannot distinguish between "This movie is not bad" and "This movie is bad not."</div>
+          <div class="q-answer"><b>Answer</b> Bag-of-words only counts word occurrences and ignores word order. Both sentences contain exactly the same words with the same counts, so they produce identical vector representations.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Two word embeddings are: w_hotel = [0.8, 0.6] and w_room = [0.6, 0.8]. (a) Write the cosine similarity formula. (b) Compute the similarity between these two words. (c) What does this value tell you in a marketing context?</div>
+          <div class="q-answer"><b>Answer (a)</b> cos(w_i, w_j) = (w_i · w_j) / (||w_i|| × ||w_j||). <b>Answer (b)</b> Dot product: (0.8×0.6) + (0.6×0.8) = 0.96. ||w_hotel|| = √(0.64+0.36) = 1.0. ||w_room|| = 1.0. Cosine = 0.96/1.0 = 0.96. <b>Answer (c)</b> Very high similarity (close to 1) means "hotel" and "room" appear in very similar contexts in the training corpus — reviewers tend to use them together, making them semantically related in this domain.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Explain what a tokenizer does and why BERT adds a special [CLS] token at the start of every input. What is this token used for downstream?</div>
+          <div class="q-answer"><b>Answer</b> A tokenizer breaks raw text into smaller units (tokens — words, sub-words, or characters) and maps each to an integer ID from its vocabulary. This converts text into a format the model can process. BERT adds a [CLS] (classification) token at the start of every input. After passing through all transformer blocks, the [CLS] token's output embedding is designed to aggregate information from the entire sequence and is used as the document-level representation for classification tasks — it serves as the input to the classification head.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">token</span>
+          <span class="kw">vocabulary</span>
+          <span class="kw">BPE</span>
+          <span class="kw">word-vector data model</span>
+          <span class="kw">one-hot encoding</span>
+          <span class="kw">bag-of-words</span>
+          <span class="kw">embedding</span>
+          <span class="kw">skip-gram</span>
+          <span class="kw">negative sampling</span>
+          <span class="kw">cosine similarity</span>
+          <span class="kw">stemming</span>
+          <span class="kw">static embedding</span>
+          <span class="kw">contextualized embedding</span>
+          <span class="kw">word arithmetic</span>
+          <span class="kw">perceptual map</span>
+          <span class="kw">context window</span>
+          <span class="kw">pre-training</span>
+          <span class="kw">fine-tuning</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">Word2Vec</span>
+          <span class="kw">GloVe</span>
+          <span class="kw">BERT (encoder)</span>
+          <span class="kw">GPT (decoder)</span>
+          <span class="kw">tokenizer</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- WEEK 2 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>2</div>
+      </td>
+      <td>
+        <div class="cell-title">Transformer Architecture</div>
+        <div class="cell-subtitle">Ch. 3 · Study Notes W2</div>
+        <div class="cell-body">How LLMs process text internally. Marketing purpose: understand what drives contextual embeddings that make downstream tasks (classification, sentiment) possible — and why prompt placement matters.</div>
+        <div class="connection-tag"><b>Builds on W1 embeddings</b> — but replaces static vectors (GloVe) with <b>context-dependent</b> ones. W1 gave every word one fixed vector; W2's attention mechanism produces a <em>different</em> vector for the same word depending on surrounding tokens. Also replaces RNNs (sequential) with parallel processing.</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">Transformer (2017)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Stack of attention + MLP blocks; no recurrence</div>
+          <div><span class="label-arch ltask">Task</span> Foundation architecture for all modern LLMs</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Multi-Head Self-Attention</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Parallel QKV projections with softmax weighting</div>
+          <div><span class="label-arch ltask">Task</span> Let tokens "look at" each other; produce contextualized representations</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Encoder (BERT-style)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Bidirectional attention; trained with MLM</div>
+          <div><span class="label-arch ltask">Task</span> Text understanding, classification, embeddings</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Decoder (GPT-style)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Causal (unidirectional) attention; trained with next-token prediction</div>
+          <div><span class="label-arch ltask">Task</span> Text generation (autoregressive)</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Three Types of Attention</div>
+          <div style="margin-top:5px; font-size:11.5px; color:var(--text-muted)">
+            <div style="margin-bottom:4px"><b style="color:var(--text)">Self-attention</b> (Encoder / BERT) — every token attends to every other token bidirectionally. Used for understanding tasks.</div>
+            <div style="margin-bottom:4px"><b style="color:var(--text)">Masked self-attention</b> (Decoder / GPT) — each token can only attend to past tokens (causal mask). Prevents looking ahead during generation.</div>
+            <div><b style="color:var(--text)">Cross-attention</b> (Encoder-Decoder / T5) — decoder queries attend to encoder keys/values. Decoder reads the encoder's full representation. Used for translation and seq2seq tasks.</div>
+          </div>
+        </div>
+      <td>
+        <div class="section-label">Forward Pass (Decoder)</div>
+        <ul class="pipeline-steps">
+          <li>Tokenize input → token IDs</li>
+          <li>Look up token embeddings + add positional embeddings</li>
+          <li>Pass through N transformer blocks (Attention → MLP)</li>
+          <li>LM Head: map final hidden state → vocabulary probabilities (softmax)</li>
+          <li>Sample next token (temperature / top-p / top-k)</li>
+          <li>Append token → repeat (autoregressive)</li>
+        </ul>
+        <div class="output-tag">Next-token probability distribution</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Attention Formula</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color: var(--text-muted); padding: 6px 8px; background: rgba(255,255,255,0.04); border-radius:5px;">Attention(Q,K,V) = softmax(QKᵀ / √d_k) × V</div>
+        <div class="eval-tag">KV Cache: reuse past K/V to speed up generation</div>
+        <div class="section-label" style="margin-top:10px">Lost in the Middle</div>
+        <div style="font-size:12px; color: var(--text-muted);">LLMs attend best to start/end of context. Middle content gets less attention → U-shaped performance curve.</div>
+      </td>
+      <td>
+        <div class="limit-item">Cannot be parallelized during generation (autoregressive); each token requires full forward pass</div>
+        <div class="limit-item">Context window is finite; very long inputs lose middle content (Liu et al.)</div>
+        <div class="limit-item">GPT-style decoders see only past tokens; not ideal for understanding tasks</div>
+        <div class="limit-item">Positional embeddings are learned; performance degrades beyond trained context length</div>
+        <div class="limit-item">MLP layers store facts statically; outdated knowledge unless fine-tuned</div>
+      </td>
+      <td>
+        <div class="next-item">Week 3 uses encoder outputs as document embeddings for classification</div>
+        <div class="next-item">Week 5 (prompt engineering) directly exploits primacy/recency effects from this week</div>
+        <div class="next-item">Week 6 (fine-tuning) involves updating the transformer weights themselves</div>
+        <div class="mkt-tag">Understanding attention explains why prompt design affects output quality</div>
+      </td>
+      <td>
+        <div class="use-item">Need to understand <em>how</em> LLMs work internally — foundational for all downstream weeks</div>
+        <div class="use-item">Explaining why encoder (BERT) is better for understanding tasks vs decoder (GPT) for generation</div>
+        <div class="use-item">Designing prompts: explains why info placement (start/end) matters</div>
+        <div class="use-not">This week is conceptual — not a standalone analysis method you "choose"</div>
+        <div class="use-not">Use encoder (BERT) for classification/clustering; use decoder (GPT) for generation/prompting</div>
+      </td>
+      <td>
+        <div class="takeaway-item">Attention solves W1's static embedding problem: the same word gets a different vector depending on context (the "bank" example)</div>
+        <div class="takeaway-item">Encoder (BERT) = bidirectional, best for understanding; Decoder (GPT) = unidirectional, best for generation — this choice drives all downstream method decisions</div>
+        <div class="takeaway-item">Lost in the Middle: LLMs attend best to start/end of input — relevant for prompt design (W5) and explaining why more context ≠ better results</div>
+      </td>
+      <td>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim); font-style:italic;">No required articles this week.</div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Sample Exam</div>
+          <div class="q-text">A transformer block contains (i) an attention mechanism (AM) and (ii) a multi-layer perceptron (MLP). Which identifies learned "factual" information, and how is it added to the embedding?</div>
+          <div class="q-answer"><b>Answer</b> The MLP stores factual learned information (e.g. "The Shawshank" → "Redemption"). The AM adds contextual information by attending to relevant tokens. Both are added via a residual connection: Output = input + function(input), meaning each block adds an update to the original representation rather than replacing it.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Walk through the two steps of self-attention for a single token. (a) How are the attention weights computed from Q and K? (b) How are these weights used with V to produce the output? (c) Why is the result divided by √d_k?</div>
+          <div class="q-answer"><b>Answer (a)</b> The Query vector of the current token is multiplied by the Key matrix of all previous tokens (Q × Kᵀ), producing a raw relevance score for each token. Softmax is applied to normalise these scores into weights that sum to 1. <b>Answer (b)</b> Each token's Value vector is multiplied by its attention weight. The output is the weighted sum of all Value vectors — incorporating relevant information from other tokens proportionally to their relevance scores. <b>Answer (c)</b> Dividing by √d_k prevents dot products from becoming very large in high-dimensional spaces, which would push softmax into regions with near-zero gradients and destabilise training.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A developer places the most relevant customer review at position 15 out of 20 in an LLM prompt. The model fails to use it. Explain why and suggest a fix.</div>
+          <div class="q-answer"><b>Answer</b> This is the "Lost in the Middle" phenomenon (Liu et al. 2023). LLMs show a U-shaped performance curve — attention is highest at the start and end of the context. Middle positions receive less attention due to how positional embeddings distribute attention weights. Fix: place the most relevant review at the beginning or end of the prompt, or reduce the total number of documents provided.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">attention mechanism</span>
+          <span class="kw">Query (Q)</span>
+          <span class="kw">Key (K)</span>
+          <span class="kw">Value (V)</span>
+          <span class="kw">multi-head attention</span>
+          <span class="kw">autoregressive</span>
+          <span class="kw">causal mask</span>
+          <span class="kw">MLM (masked LM)</span>
+          <span class="kw">bidirectional attention</span>
+          <span class="kw">positional embedding</span>
+          <span class="kw">forward pass</span>
+          <span class="kw">residual stream</span>
+          <span class="kw">Lost in the Middle</span>
+          <span class="kw">greedy decoding</span>
+          <span class="kw">temperature</span>
+          <span class="kw">top-k / top-p</span>
+          <span class="kw">softmax</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">Transformer block</span>
+          <span class="kw">feedforward (MLP)</span>
+          <span class="kw">LM Head</span>
+          <span class="kw">KV Cache</span>
+          <span class="kw">BERT</span>
+          <span class="kw">GPT</span>
+          <span class="kw">BPE tokenizer</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- WEEK 3 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>3</div>
+      </td>
+      <td>
+        <div class="cell-title">Text Classification &amp; Sentiment</div>
+        <div class="cell-subtitle">Ch. 4 · Study Notes W3</div>
+        <div class="cell-body">Use document embeddings to predict document-level features (e.g. star rating, sentiment). Marketing purpose: understand what drives customer satisfaction, detect brand perceptions, build perceptual maps from reviews at scale.</div>
+        <div class="connection-tag"><b>Builds on W1 (cosine similarity) + W2 (encoder embeddings).</b> W1 compared word vectors; W3 applies the same cosine logic to <em>document</em> vectors. W2's BERT encoder is now used as a frozen feature extractor — we take its output embeddings and feed them into a classifier, without changing BERT's weights (that change comes in W6).</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">Pooling + Logistic Regression</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Pretrained encoder (SBERT / GloVe) → mean/max pool → logit head</div>
+          <div><span class="label-arch ltask">Task</span> Supervised classification (e.g. positive/negative)</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Sentence-BERT (SBERT)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Siamese BERT networks trained with contrastive learning on sentence pairs</div>
+          <div><span class="label-arch ltask">Task</span> Generate document-level embeddings (768-dim)</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Zero-Shot Label Alignment</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> SBERT encoder; no classifier head</div>
+          <div><span class="label-arch ltask">Task</span> Unsupervised classification via cosine sim to label descriptions</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Task-Specific Fine-Tuned Model</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> RoBERTa fine-tuned on tweets (cardiffnlp)</div>
+          <div><span class="label-arch ltask">Task</span> Direct sentiment prediction (negative / neutral / positive)</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Opposites Method (Perceptual Map)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> SBERT + PCA biplot</div>
+          <div><span class="label-arch ltask">Task</span> Brand benchmarking on attribute pairs</div>
+        </div>
+      </td>
+      <td>
+        <div class="section-label">Supervised Pipeline (SBERT + LR)</div>
+        <ul class="pipeline-steps">
+          <li>Encode each document → 768-dim vector (SBERT)</li>
+          <li>Optionally reduce with PCA (stable ~200–300 dims)</li>
+          <li>Train logistic regression on labelled embeddings</li>
+          <li>Predict on test set</li>
+        </ul>
+        <div class="output-tag">Class prediction + probability; confusion matrix</div>
+        <div class="eval-tag">Eval: Precision, Recall, F1 (macro &amp; weighted), Accuracy</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Opposites / Perceptual Map Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Embed positive &amp; negative label descriptions (e.g. "great service" vs "poor service")</li>
+          <li>For each review: indicator = 1 if sim(pos) &gt; sim(neg)</li>
+          <li>Average indicators per brand per attribute</li>
+          <li>Build brand × attribute score table</li>
+          <li>Standardize → PCA → biplot</li>
+        </ul>
+        <div class="output-tag">Perceptual map (PCA biplot): brands as points, attributes as arrows</div>
+      </td>
+      <td>
+        <div class="limit-item">Mean pooling on very long texts loses discriminative signal</div>
+        <div class="limit-item">Zero-shot alignment first identifies strong sentiment documents (of any valence), then uses score difference for classification — absolute scores are uninterpretable</div>
+        <div class="limit-item">Task-specific model (Twitter-RoBERTa) trained on tweets; may not generalise perfectly to hotel reviews (lower recall for positive class)</div>
+        <div class="limit-item">SBERT + LR performs best overall but needs labelled data; zero-shot doesn't</div>
+        <div class="limit-item">PCA biplot is a 2D approximation — visual distances may be distorted</div>
+      </td>
+      <td>
+        <div class="next-item">Week 4 clusters documents without labels (unsupervised) rather than classifying with labels</div>
+        <div class="next-item">Week 6 fine-tunes the encoder itself (not just the head) for better task-specific representations</div>
+        <div class="mkt-tag">From review text → which brands score highest on cleanliness, service, etc. — data-driven positioning without surveys</div>
+      </td>
+      <td>
+        <div class="use-item">Have labelled data + want best accuracy → SBERT + logistic regression (F1 = 0.85)</div>
+        <div class="use-item">No labels available → zero-shot alignment (competitive at F1 = 0.79)</div>
+        <div class="use-item">Want attribute-level brand benchmarking → opposites method + PCA biplot</div>
+        <div class="use-not">Topics/attributes unknown → don't predefine; use clustering (W4) instead</div>
+        <div class="use-not">Very few labels → use SetFit (W6) rather than logistic regression on full embeddings</div>
+        <div class="use-not">Need generation not classification → use generative models (W5)</div>
+        <div class="section-label" style="margin-top:8px">Choose SBERT over GloVe (W1)</div>
+        <div style="font-size:11.5px; color:var(--text-muted)">SBERT captures document-level meaning; GloVe only word-level static vectors</div>
+      </td>
+      <td>
+        <div class="takeaway-item">Zero-shot alignment first finds emotionally strong reviews regardless of valence — the classification signal comes from the <em>difference</em> between positive and negative label scores, not the absolute values</div>
+        <div class="takeaway-item">SBERT + logistic regression outperforms a task-specific fine-tuned LLM (F1 0.85 vs 0.79) — more parameters ≠ better results on a specific task</div>
+        <div class="takeaway-item">Always check what variation drives your results: "if your code runs, you will always get results" — understanding <em>why</em> is the exam skill</div>
+      </td>
+      <td>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim); font-style:italic;">No required articles this week.</div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Sample Exam</div>
+          <div class="q-text">A researcher matches review embeddings to "This product is of high quality" and finds high cosine similarity for ALL quality-related reviews, whether positive or negative. (a) Why? (b) How do you solve this with word arithmetic?</div>
+          <div class="q-answer"><b>Answer (a)</b> Document embeddings capture the full semantic meaning of text, where topic dominates over sentiment. The model treats topic similarity as the primary signal — reviews about quality cluster together regardless of valence. <b>Answer (b)</b> Use the difference between a positive and negative prototype: embed "the hotel was clean" and "the hotel was dirty" and compute the review's similarity to the difference vector. This isolates sentiment direction while cancelling out the shared topic signal.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">In the course notebook, four approaches were compared for sentiment classification: (1) Twitter-RoBERTa, (2) zero-shot alignment, (3) SBERT + logistic regression, (4) GloVe + mean pooling + logistic regression. Rank them by F1 and explain why the simplest approach does not win.</div>
+          <div class="q-answer"><b>Answer</b> Ranking: SBERT + LR (F1=0.83) > GloVe + mean pooling + LR (F1=0.80) ≈ Twitter-RoBERTa (F1=0.79) ≈ zero-shot (F1=0.79). The simplest approach (GloVe + pooling) does not win because GloVe produces static word-level embeddings that miss contextual meaning. SBERT produces document-level embeddings trained specifically for semantic similarity, capturing richer signals for classification. More parameters (Twitter-RoBERTa) do not automatically win because it was fine-tuned on tweets, not hotel reviews — domain mismatch reduces its effectiveness.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A researcher builds a perceptual map using prototype sentences and document embeddings. She includes "This is a positive review" as one of the attribute arrows. Explain why this is problematic and how she should select attributes for a meaningful perceptual map.</div>
+          <div class="q-answer"><b>Answer</b> "This is a positive review" is a general evaluative attribute — it captures overall sentiment rather than a specific product dimension. Including it makes the map less actionable since it does not tell the brand what to improve. To select meaningful attributes, the researcher should: (1) identify specific product-level dimensions that customers write about (service, cleanliness, food, location), (2) use pairs of opposite prototype sentences (e.g. "great service" vs "poor service") to isolate evaluation direction, and (3) exclude general evaluative topics that merely reflect overall satisfaction rather than distinct, actionable attributes.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">document embedding</span>
+          <span class="kw">pooling</span>
+          <span class="kw">mean pooling</span>
+          <span class="kw">max pooling</span>
+          <span class="kw">contrastive learning</span>
+          <span class="kw">zero-shot classification</span>
+          <span class="kw">supervised classification</span>
+          <span class="kw">confusion matrix</span>
+          <span class="kw">precision / recall</span>
+          <span class="kw">F1 score</span>
+          <span class="kw">accuracy</span>
+          <span class="kw">macro avg</span>
+          <span class="kw">weighted avg</span>
+          <span class="kw">opposites method</span>
+          <span class="kw">perceptual map</span>
+          <span class="kw">PCA biplot</span>
+          <span class="kw">preference tuning</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">SBERT</span>
+          <span class="kw">logistic regression</span>
+          <span class="kw">PCA</span>
+          <span class="kw">Twitter-RoBERTa</span>
+          <span class="kw">Flan-T5</span>
+          <span class="kw">MTEB leaderboard</span>
+          <span class="kw">DeBERTa</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- WEEK 4 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>4</div>
+      </td>
+      <td>
+        <div class="cell-title">Text Clustering &amp; Topic Modeling</div>
+        <div class="cell-subtitle">Ch. 5 · Study Notes W4</div>
+        <div class="cell-body">Discover latent topics in review text without predefined labels. Marketing purpose: let reviews reveal which hotel attributes customers care about, measure sentiment per attribute, and identify which attributes actually drive satisfaction — without a researcher pre-selecting categories.</div>
+        <div class="connection-tag"><b>Shifts from supervised (W3) to unsupervised.</b> Uses the same SBERT encoder as W3 but now at <em>sentence level</em> and without labels. Also reintroduces W1's bag-of-words (via c-TF-IDF) as the topic labelling step — showing BoW is not dead, just repurposed. Adds a logistic regression model (W3 method) for the satisfaction analysis.</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">Text Clustering Pipeline (SBERT → UMAP → HDBSCAN)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> SBERT encoder + UMAP (nonlinear dim. reduction) + HDBSCAN (density-based clustering)</div>
+          <div><span class="label-arch ltask">Task</span> Group semantically similar sentences/docs without labels</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">BERTopic</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Modular: embedding model + UMAP + HDBSCAN + c-TF-IDF; optional representation layer (KeyBERTInspired, MMR, LLM)</div>
+          <div><span class="label-arch ltask">Task</span> Topic modeling: clusters + automatic keyword labels per topic</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">c-TF-IDF (class-based TF-IDF)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> BoW aggregated at cluster level; IDF penalises words common across all clusters</div>
+          <div><span class="label-arch ltask">Task</span> Extract words that are frequent in a cluster but unique to it</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Sentiment per Attribute + Logit Model</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Pretrained sentiment model (e.g. Twitter-RoBERTa) + logistic regression</div>
+          <div><span class="label-arch ltask">Task</span> Predict overall satisfaction from attribute-level sentiment scores; identify which attributes drive happiness</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">LDA vs BERTopic</div>
+          <div style="margin-top:5px; font-size:11.5px; color:var(--text-muted)">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 8px;">
+              <div style="color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.5px">LDA</div>
+              <div style="color:#a78bfa; font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.5px">BERTopic</div>
+              <div>Bag-of-words input — ignores word order and context</div>
+              <div>Dense contextual embeddings (SBERT) — captures meaning</div>
+              <div>Soft assignment — document belongs to multiple topics with probabilities</div>
+              <div>Hard assignment — one cluster per document (HDBSCAN)</div>
+              <div>Weak semantic understanding</div>
+              <div>Strong semantic understanding</div>
+              <div>Fixed pipeline</div>
+              <div>Modular — swap any component</div>
+              <div>No outlier handling — every doc assigned</div>
+              <div>Topic -1 for outliers (HDBSCAN)</div>
+            </div>
+          </div>
+        </div>
+      <td>
+        <div class="section-label">Full Marketing Pipeline (Lecture)</div>
+        <ul class="pipeline-steps">
+          <li>Split reviews into sentences (one attribute per sentence)</li>
+          <li>Embed each sentence with SBERT (384-dim)</li>
+          <li>Reduce with UMAP to ~10-dim (cosine metric)</li>
+          <li>Cluster with HDBSCAN (Euclidean on reduced space; min_cluster_size=50)</li>
+          <li>Label clusters via c-TF-IDF → manually select actionable attributes (discard evaluative topics like "great hotel")</li>
+          <li>Score each sentence's sentiment with pretrained model</li>
+          <li>Aggregate: topic presence dummy + avg sentiment per topic per review</li>
+          <li>Run logit model: predict happy/unhappy from attribute sentiments (control for presence)</li>
+        </ul>
+        <div class="output-tag">Topic list with keywords · Sentiment per attribute per brand · Logit coefficients · Perceptual map (PCA biplot)</div>
+        <div class="eval-tag">Eval: human inspection of clusters; logit significance (p&lt;0.05); F1 of sentiment model</div>
+        <div class="section-divider"></div>
+        <div class="section-label">c-TF-IDF Formula</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color: var(--text-muted); padding:5px 8px; background:rgba(255,255,255,0.04); border-radius:5px;">c-TF-IDF = TF_c × log(1 + avg #words per cluster / TF)</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Perceptual Map Pipeline (4 Steps)</div>
+        <ul class="pipeline-steps">
+          <li>Identify topics with BERTopic; select attribute topics</li>
+          <li>Compute sentiment per sentence; aggregate per brand × attribute</li>
+          <li>Build brand × attribute sentiment score table</li>
+          <li>Standardise → PCA → biplot</li>
+        </ul>
+      </td>
+      <td>
+        <div class="limit-item">UMAP is stochastic — results vary across runs (set random_state); visualisation in 2D distorts true distances</div>
+        <div class="limit-item">HDBSCAN produces outlier topic -1 (unclustered sentences); can lose significant data</div>
+        <div class="limit-item">c-TF-IDF is bag-of-words — ignores word order and semantics within topic labels</div>
+        <div class="limit-item"><strong>Confounding:</strong> including evaluative topics ("great hotel", "recommended") as logit predictors absorbs variance from real attributes → coefficients are biased. Must remove them</div>
+        <div class="limit-item">Zero sentiment ≠ neutral — it means attribute not mentioned; must control for presence with dummy variable</div>
+        <div class="limit-item">"Best predicting model ≠ most useful model" — maximising accuracy can hide actionable insights</div>
+        <div class="limit-item">Requires manual inspection to distinguish actionable attributes from general evaluations</div>
+      </td>
+      <td>
+        <div class="next-item">Week 5 (prompt engineering) can serve as BERTopic's representation layer to auto-label topics</div>
+        <div class="next-item">Builds on W3 embeddings (same SBERT), now applied unsupervised at sentence level</div>
+        <div class="next-item">Logit model here is a marketing analytics tool — not a deep learning model</div>
+        <div class="mkt-tag">Discover that bathroom and bed sentiment drive satisfaction more than location — insights a CEO can act on, sourced entirely from review text</div>
+      </td>
+      <td>
+        <div class="use-item">Attributes are <em>unknown</em> — let reviews reveal topics (vs W3 which needs predefined labels)</div>
+        <div class="use-item">Want to discover what drives satisfaction, not just measure predefined attributes</div>
+        <div class="use-item">Large unlabelled corpus with no annotation budget</div>
+        <div class="use-not">Attributes already known → use opposites method (W3) which is simpler and faster</div>
+        <div class="section-label" style="margin-top:8px">HDBSCAN over k-means</div>
+        <div style="font-size:11.5px; color:var(--text-muted)">Use HDBSCAN when k is unknown and outliers are acceptable; use k-means when you need every doc assigned and can specify k</div>
+        <div class="section-label" style="margin-top:8px">BERTopic over LDA</div>
+        <div style="font-size:11.5px; color:var(--text-muted)">BERTopic captures semantic meaning via contextual embeddings; LDA uses only bag-of-words and ignores context</div>
+      </td>
+      <td>
+        <div class="takeaway-item">Including evaluative topics ("great hotel", "recommended") as logit predictors confounds the model — they measure nearly the same thing as the DV; remove them to see true attribute effects</div>
+        <div class="takeaway-item">Zero sentiment ≠ neutral evaluation — it means the attribute was not mentioned; always control for presence with a dummy variable</div>
+        <div class="takeaway-item">The best predicting model is not always the most useful model — maximising F1 can hide actionable marketing insights</div>
+      </td>
+      <td>
+        <div class="art-block">
+          <div class="art-title">BERTopic: Neural topic modeling with a class-based TF-IDF procedure</div>
+          <div class="art-author">Grootendorst (2022) · Week 4 · Required</div>
+          <div class="art-row">
+            <span class="art-row-label art-claim">Claim</span>
+            <span class="art-row-text">Topic modeling can be approached as a clustering task. BERTopic extends this by adding a class-based TF-IDF step to automatically extract coherent topic representations — words that are frequent within a cluster but rare across all clusters.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-method">How</span>
+            <span class="art-row-text">Three-step pipeline: (1) generate document embeddings with a pretrained transformer, (2) reduce dimensionality and cluster with HDBSCAN, (3) represent each cluster using c-TF-IDF rather than centroid proximity. Evaluated on multiple benchmarks comparing coherence and diversity against LDA and other clustering-based approaches.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-concl">Conclusion</span>
+            <span class="art-row-text">BERTopic generates coherent topics and is competitive across benchmarks. The modular pipeline — where clustering and topic representation are independent steps — makes it flexible and extensible.</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Sample Exam</div>
+          <div class="q-text">A perceptual map needs to be built using BERTopic and a sentiment classifier. Provide the 4-step pipeline with justification for each step.</div>
+          <div class="q-answer"><b>Answer</b> Step 1: Run BERTopic on sentences to identify and label topic clusters (attributes emerge from data, not researcher pre-selection). Step 2: Select actionable product attributes from the clusters — discard general evaluative topics like "great hotel." Step 3: Score each sentence's sentiment with a pretrained model and aggregate per brand × attribute. Step 4: Standardise scores, run PCA, visualise as biplot with brands as points and attributes as arrows.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A logit model predicting happy/unhappy reviews includes both "bathroom sentiment" (coef = 9.16) and "great hotel sentiment" (coef = 6.30). A manager argues the model confirms bathroom is the most actionable driver. What concern would you raise?</div>
+          <div class="q-answer"><b>Answer</b> "Great hotel" is a general evaluative topic that measures nearly the same thing as the dependent variable (happy/unhappy). Including it confounds the model — it absorbs variance that should be attributed to specific attributes, making the specific effects appear smaller and their relative ordering unreliable. The solution is to remove evaluative topics and rerun the model with only actionable product attributes. The best-predicting model is not always the most useful model for marketing insights.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">After running BERTopic on hotel reviews, the model produces 16 topics. Topics 3, 7, 9, 11, 12, and 15 are labelled "hotel stay", "great hotel", "stayed nights", "negative experience", "definitely stay", and "recommended." Should these be included in a perceptual map? Explain your reasoning.</div>
+          <div class="q-answer"><b>Answer</b> No. These are general evaluative topics — they reflect overall satisfaction or dissatisfaction rather than specific, actionable product attributes. Including them in the perceptual map would (1) make the dimensions uninterpretable as distinct product features, (2) confound attribute-level analysis since they correlate strongly with the outcome variable (happy/unhappy), and (3) reduce the actionability of insights for management. Only topics that map to specific product dimensions (location, food, bathroom, staff, noise, etc.) should be retained as perceptual map attributes.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">text clustering</span>
+          <span class="kw">topic modeling</span>
+          <span class="kw">sentence splitting</span>
+          <span class="kw">dimensionality reduction</span>
+          <span class="kw">outlier (topic -1)</span>
+          <span class="kw">modularity</span>
+          <span class="kw">c-TF-IDF</span>
+          <span class="kw">sentiment per attribute</span>
+          <span class="kw">presence dummy</span>
+          <span class="kw">confounding</span>
+          <span class="kw">evaluative topic</span>
+          <span class="kw">actionable attribute</span>
+          <span class="kw">dependent variable (DV)</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">UMAP</span>
+          <span class="kw">HDBSCAN</span>
+          <span class="kw">k-means</span>
+          <span class="kw">BERTopic</span>
+          <span class="kw">LDA</span>
+          <span class="kw">KeyBERTInspired</span>
+          <span class="kw">MMR</span>
+          <span class="kw">logit model</span>
+          <span class="kw">reduce_outliers()</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- WEEK 5 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>5</div>
+      </td>
+      <td>
+        <div class="cell-title">Prompt Engineering</div>
+        <div class="cell-subtitle">Ch. 6 · Study Notes W5</div>
+        <div class="cell-body">Design prompts to guide generative LLMs toward desired outputs. Marketing purpose: use LLMs as zero-shot classifiers, annotation tools, or topic labellers — without training. Critical lesson: CoT explanations are NOT faithful records of model reasoning, which has direct implications for any marketing decision based on LLM outputs.</div>
+        <div class="connection-tag"><b>Switches from encoder models (W2–W4) to decoder/generative models</b> (GPT-style from W2). Exploits positional embeddings (W2) directly — the Lost in the Middle finding is a consequence of how transformers assign attention by position. CoT unfaithfulness connects to W2's insight that transformers compute in parallel, not sequentially.</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">Instruction-Based Prompting</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Generative LLM (e.g. Phi-3, GPT); modular prompt template</div>
+          <div><span class="label-arch ltask">Task</span> Classification, summarisation, translation, Q&amp;A, annotation</div>
+          <div class="method-arch" style="margin-top:5px">
+            <b style="color:var(--text)">PICFATD — Prompt Components:</b> <span style="color:var(--accent)">P</span>ersona · <span style="color:var(--accent)">I</span>nstruction · <span style="color:var(--accent)">C</span>ontext · <span style="color:var(--accent)">F</span>ormat · <span style="color:var(--accent)">A</span>udience · <span style="color:var(--accent)">T</span>one · <span style="color:var(--accent)">D</span>ata<br>
+            <b style="color:var(--text)">Prompt Hierarchy (priority order):</b> SYSTEM prompt (guardrails, set outside input) > DEVELOPER prompt (task instructions) > USER prompt (end-user content). Higher levels override lower levels.
+          </div>
+        <div class="method-block">
+          <div class="method-name">In-Context Learning (few-shot)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Same LLM; prior turns include example input→output pairs</div>
+          <div><span class="label-arch ltask">Task</span> Guide output structure and content without fine-tuning</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Chain-of-Thought (CoT)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Generative LLM; prompt includes reasoning examples or "Let's think step-by-step"</div>
+          <div><span class="label-arch ltask">Task</span> Distribute computation over reasoning tokens; improve complex tasks</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Self-Consistency / Tree-of-Thought / Chain Prompting</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Multiple sequential or parallel LLM calls</div>
+          <div><span class="label-arch ltask">Task</span> Reduce randomness (majority vote) or explore branching reasoning paths</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Reasoning vs Non-Reasoning Models</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Non-reasoning: GPT-4o, Llama 3, DeepSeek V3 — follow instructions directly. Reasoning: GPT-o1, DeepSeek R1, Claude Sonnet — generate own solution path internally</div>
+          <div><span class="label-arch ltask">Task</span> Prompting strategy differs: non-reasoning needs detailed guidance; over-specifying with reasoning models can distort their internal path</div>
+          <div class="method-arch">Old LLMs fail at letter counting ("strawberry") because tokenizers split words into sub-word tokens — the model never "sees" individual characters. Modern models solve this via CoT or code execution.</div>
+        </div>
+      </td>
+      <td>
+        <div class="section-label">Prompt Construction Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Define components: Persona + Instruction + Context + Format + Audience + Tone + Data</li>
+          <li>Apply specificity — constrain output format; define what "urgent" means, etc.</li>
+          <li>Place critical info at start or end (primacy/recency bias; avoid middle)</li>
+          <li>Optionally add few-shot examples as prior turns</li>
+          <li>Optionally add "Let's think step-by-step" for CoT</li>
+          <li>Verify output: examples / grammar constraints / fine-tuning</li>
+        </ul>
+        <div class="output-tag">Free-form text / structured output (JSON) / class label</div>
+        <div class="eval-tag">Eval: manual inspection; constrained sampling; counterfactual testing</div>
+        <div class="section-divider"></div>
+        <div class="section-label">Output Parameters</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.7">
+          <b style="color:var(--text)">Temperature</b>: 0 = deterministic; high = creative<br>
+          <b style="color:var(--text)">top_p</b>: nucleus sampling — token pool by cumulative prob<br>
+          <b style="color:var(--text)">top_k</b>: limits to k most probable tokens
+        </div>
+        <div class="section-divider"></div>
+        <div class="section-label">Lost in the Middle (Liu et al. 2023)</div>
+        <div style="font-size:12px; color:var(--text-muted)">U-shaped performance: best at start/end, worst in middle. With 20 docs, GPT-3.5 dropped from ~76% (answer first) to ~54% (answer middle) — worse than closed-book (56.1%). More context ≠ better performance.</div>
+      </td>
+      <td>
+        <div class="limit-item"><b>CoT is NOT faithful</b> (Turpin 2023; Barez 2025): biasing features change answers up to 36% but are never mentioned in CoT. Explanations are post-hoc rationalisation, not a window into computation</div>
+        <div class="limit-item">Silent error correction, filler tokens, and bias-driven rationalisation mean CoT output ≠ model reasoning path</div>
+        <div class="limit-item">Absence of a factor in an explanation does NOT prove it wasn't used (key exam link: loan decision / ethnicity)</div>
+        <div class="limit-item">Needle-in-a-haystack: adding 4 distractors near the answer drops accuracy from ~95% to ~70% even on top models</div>
+        <div class="limit-item">Hallucination: LLMs generate confident but incorrect facts</div>
+        <div class="limit-item">Self-consistency and Tree-of-Thought require multiple API calls → slow and costly</div>
+        <div class="limit-item">Prompts are model-specific; what works for GPT may fail for Llama</div>
+      </td>
+      <td>
+        <div class="next-item">Week 6 fine-tuning is the alternative when prompt engineering is insufficient or unreliable</div>
+        <div class="next-item">CoT unfaithfulness connects back to W2 (transformers don't reason sequentially — they process in parallel)</div>
+        <div class="next-item">Lost in the Middle connects directly to W2 positional embeddings and attention</div>
+        <div class="next-item">Prompt engineering used inside BERTopic (W4) to auto-label topics</div>
+        <div class="mkt-tag">Zero-shot classify reviews, auto-label training data, or label BERTopic clusters — but always verify; CoT explanations cannot be trusted as proof of correct reasoning</div>
+      </td>
+      <td>
+        <div class="use-item">No labelled data and no compute budget → prompt engineering is fastest path</div>
+        <div class="use-item">Task changes frequently → easier to update a prompt than retrain a model</div>
+        <div class="use-item">Need interpretable output structure (JSON, specific format)</div>
+        <div class="use-not">Need high reliability or auditability → prompts are fragile; use fine-tuning (W6)</div>
+        <div class="use-not">Trust CoT as proof of reasoning → never; always verify with counterfactual tests</div>
+        <div class="section-label" style="margin-top:8px">Non-reasoning vs Reasoning models</div>
+        <div style="font-size:11.5px; color:var(--text-muted)">Non-reasoning: give detailed instructions. Reasoning (GPT-o1, DeepSeek R1): give the goal, not every step — over-specifying can distort their internal path</div>
+      </td>
+      <td>
+        <div class="takeaway-item">CoT explanations are generated output, not a window into computation — a coherent reasoning chain does NOT prove the model used that reasoning (Turpin 2023; Barez 2025)</div>
+        <div class="takeaway-item">More context ≠ better: GPT-3.5 with answer in the middle performed worse than answering with no documents at all (54% vs 56.1% closed-book)</div>
+        <div class="takeaway-item">For marketing decisions (loan approvals, brand analysis): absence of a factor in an LLM's explanation does NOT prove it wasn't used — always verify with counterfactual tests</div>
+      </td>
+      <td>
+        <div class="art-block">
+          <div class="art-title">Lost in the Middle: How Language Models Use Long Contexts</div>
+          <div class="art-author">Liu et al. (2023) · Week 5 · Required</div>
+          <div class="art-row">
+            <span class="art-row-label art-claim">Claim</span>
+            <span class="art-row-text">Although language models can take long contexts as input, they do not use information from all positions equally — performance degrades significantly when relevant information is in the middle of the context.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-method">How</span>
+            <span class="art-row-text">Controlled experiments on multi-document question answering and key-value retrieval. Given k documents where exactly one contains the answer, they systematically varied the position of that document across the input context and measured accuracy. Tested on both open (MPT-30B, LongChat-13B) and closed (GPT-3.5-Turbo, Claude-1.3) models.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-concl">Conclusion</span>
+            <span class="art-row-text">Performance is highest at the beginning (primacy bias) and end (recency bias) of the context, forming a U-shaped curve. Performance in the middle can fall below closed-book performance. Larger context windows do not solve this — extended-context models show the same pattern.</span>
+          </div>
+        </div>
+        <div class="art-block">
+          <div class="art-title">Language Models Don't Always Say What They Think</div>
+          <div class="art-author">Turpin et al. (2023) · Week 5 · Required</div>
+          <div class="art-row">
+            <span class="art-row-label art-claim">Claim</span>
+            <span class="art-row-text">Chain-of-thought explanations produced by LLMs can be systematically unfaithful — they do not reflect the actual factors that influenced the model's answer.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-method">How</span>
+            <span class="art-row-text">They introduced biasing features into prompts (answer-is-always-A patterns, suggested answers, reordered options) and tested whether (1) these features changed the model's answer and (2) whether the CoT acknowledged them. When the hint changes the answer but is not mentioned in the CoT, that constitutes evidence of unfaithfulness.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-concl">Conclusion</span>
+            <span class="art-row-text">Biasing features significantly influenced answers but were almost never acknowledged in CoT explanations. CoT with biasing features sometimes made performance worse. A coherent CoT explanation does not prove the model reasoned correctly.</span>
+          </div>
+        </div>
+        <div class="art-block">
+          <div class="art-title">Chain-of-Thought Is Not Explainability</div>
+          <div class="art-author">Barez et al. (2025) · Week 5 · Required</div>
+          <div class="art-row">
+            <span class="art-row-label art-claim">Claim</span>
+            <span class="art-row-text">CoT is increasingly treated as an interpretability technique (~25% of recent CoT papers), but CoT rationales are neither necessary nor sufficient for trustworthy interpretability — verbalised chains frequently diverge from the true hidden computations driving a model's predictions.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-method">How</span>
+            <span class="art-row-text">Synthesis of evidence from prior studies. They identify key patterns of unfaithfulness: bias-driven rationalisation, silent error correction, unfaithful shortcuts, and filler tokens. They also analysed 1,000 recent CoT papers to document how widely CoT is misused as an interpretability tool, particularly in high-stakes domains.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-concl">Conclusion</span>
+            <span class="art-row-text">Do not treat CoT as sufficient for interpretability without additional verification. Rigorous faithfulness testing and causal validation methods (activation patching, counterfactual interventions) are needed to ground explanations in model internals.</span>
+          </div>
+        </div>
+        <div class="art-block">
+          <div class="art-title">Reasoning Models Don't Always Say What They Think</div>
+          <div class="art-author">Chen et al. / Anthropic (2025) · Week 5 · Covered in lecture</div>
+          <div class="art-row">
+            <span class="art-row-label art-claim">Claim</span>
+            <span class="art-row-text">Even reasoning models (Claude 3.5/3.7 Sonnet, DeepSeek R1) use hints in their answers without acknowledging them in their reasoning traces — extending Turpin et al.'s findings to the latest generation of models.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-method">How</span>
+            <span class="art-row-text">Six types of hints were tested across neutral (sycophancy, consistency, visual pattern, metadata) and misaligned (grader hacking, unethical info) categories. For each hint, they measured (1) how often the model changed its answer to match the hint and (2) how often the model acknowledged using the hint in its reasoning trace.</span>
+          </div>
+          <div class="art-row">
+            <span class="art-row-label art-concl">Conclusion</span>
+            <span class="art-row-text">Models used hints 58–77% of the time but acknowledged doing so in only ~5% of cases (Claude 3.5 Sonnet). Even reasoning models are not transparent about the factors influencing their answers.</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Sample Exam</div>
+          <div class="q-text">An LLM fine-tuned for loan decisions never mentions ethnicity in its explanations. A team member argues this proves there is no discrimination. (a) How would you formally test for bias? (b) What advice would you give about the explanation argument?</div>
+          <div class="q-answer"><b>Answer (a)</b> Construct loan applications that differ only on ethnicity-related features and nothing else. If the LLM makes different decisions on these counterfactual pairs, the model is discriminating. <b>Answer (b)</b> LLM explanations do not need to be truthful (Turpin 2023; Barez 2025). Absence of ethnicity in the explanation is not evidence it was not used internally. A formal counterfactual test of actual decisions is required — the explanation alone cannot be trusted.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Turpin et al. (2023) and Barez et al. (2025) both argue that chain-of-thought explanations are unfaithful. (a) What is the core claim? (b) How did Turpin et al. arrive at this conclusion — describe their method at a high level.</div>
+          <div class="q-answer"><b>Answer (a)</b> The core claim is that CoT explanations produced by LLMs do not necessarily reflect how the model actually reached its answer. The explanation is generated output that resembles reasoning, not a true record of the model's internal computation. <b>Answer (b)</b> Turpin et al. introduced biasing features into prompts — such as suggesting a particular answer or always making the correct answer option A in few-shot examples. They then checked whether (1) the model changed its answer based on the hint and (2) whether the CoT explanation acknowledged using the hint. Finding that answers changed but hints were never mentioned in the CoT constitutes evidence of unfaithfulness.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A marketing team uses GPT-4 to classify 500 customer emails as "complaint", "inquiry", or "praise". The model sometimes outputs "complaint/inquiry" as a combined label. What two techniques would you use to fix this, and how do they work?</div>
+          <div class="q-answer"><b>Answer</b> (1) Few-shot examples: provide 2–3 examples in the prompt showing the exact expected output format (one clean label per email). This guides the model's output structure without changing its weights. (2) Constrained sampling / grammar: restrict the token selection process to only allow the three valid labels as output tokens, preventing the model from generating combined or unexpected labels. Both can be combined for stronger control.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">prompt engineering</span>
+          <span class="kw">PICFATD</span>
+          <span class="kw">prompt hierarchy (system &gt; developer &gt; user)</span>
+          <span class="kw">in-context learning</span>
+          <span class="kw">zero/one/few-shot</span>
+          <span class="kw">CoT faithfulness</span>
+          <span class="kw">CoT unfaithfulness</span>
+          <span class="kw">bias-driven rationalisation</span>
+          <span class="kw">biasing features</span>
+          <span class="kw">hallucination</span>
+          <span class="kw">primacy bias</span>
+          <span class="kw">recency bias</span>
+          <span class="kw">Lost in the Middle</span>
+          <span class="kw">needle-in-a-haystack</span>
+          <span class="kw">context rot</span>
+          <span class="kw">distractors</span>
+          <span class="kw">system 1 / system 2</span>
+          <span class="kw">constrained sampling</span>
+          <span class="kw">output verification</span>
+          <span class="kw">persona / format / tone</span>
+          <span class="kw">tokenizer & letter counting</span>
+          <span class="kw">instruction tuning</span>
+          <span class="kw">RLHF</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">chain-of-thought (CoT)</span>
+          <span class="kw">zero-shot CoT</span>
+          <span class="kw">self-consistency</span>
+          <span class="kw">tree-of-thought</span>
+          <span class="kw">chain prompting</span>
+          <span class="kw">Turpin et al. (2023)</span>
+          <span class="kw">Barez et al. (2025)</span>
+          <span class="kw">RAG</span>
+          <span class="kw">GPT-o1 / DeepSeek R1</span>
+          <span class="kw">temperature / top_p / top_k</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- WEEK 6 -->
+    <tr>
+      <td class="week-cell">
+        <div class="week-badge"><span class="wlabel">WK</span>6</div>
+      </td>
+      <td>
+        <div class="cell-title">Fine-Tuning LLMs</div>
+        <div class="cell-subtitle">Ch. 11 (excl. NER) · Study Notes W6</div>
+        <div class="cell-body">Update model weights for a specific task or domain. Marketing purpose: when generic pretrained models are not accurate enough — e.g. brand-specific sentiment classifier. Also introduced: transformer architecture applied to non-text sequential marketing data (customer journeys, shopping baskets).</div>
+        <div class="connection-tag"><b>Unlocks the weights frozen in W3–W4.</b> W3 used BERT as a fixed feature extractor; W6 allows BERT's weights to update jointly with the classifier — same architecture, different training mode. MLM continued pretraining re-uses W2's masked language modelling objective, now on domain-specific text. SetFit re-uses W3's contrastive learning (SBERT) but with very few labels.</div>
+      </td>
+      <td>
+        <div class="method-block">
+          <div class="method-name">Full Fine-Tuning (BERT + Head)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> BERT (12 encoder blocks + pooler) + classification head; ALL layers trainable</div>
+          <div><span class="label-arch ltask">Task</span> Supervised classification; jointly updates entire network → F1 = 0.93</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Frozen Layers Fine-Tuning</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> BERT with first N blocks frozen; last blocks + pooler + head trainable</div>
+          <div><span class="label-arch ltask">Task</span> Classification with reduced compute; last 2 blocks + head → F1 = 0.92</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">SetFit (Few-Shot)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> SentenceTransformer fine-tuned via contrastive learning on generated sentence pairs + logistic regression head</div>
+          <div><span class="label-arch ltask">Task</span> Classification with ~16 labelled examples per class → F1 ≈ 0.84</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Continued Pre-Training (MLM)</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> BERT trained further with masked language modelling on domain text (15% masking)</div>
+          <div><span class="label-arch ltask">Task</span> Domain adaptation before task-specific fine-tuning (3-step pipeline)</div>
+        </div>
+        <div class="method-block">
+          <div class="method-name">Transformers for Non-Text Data</div>
+          <div style="margin-top:3px"><span class="label-arch larch">Architecture</span> Same transformer; products/touchpoints as tokens; MLM-style masked prediction</div>
+          <div><span class="label-arch ltask">Task</span> Shopping basket completion; customer journey prediction</div>
+        </div>
+      </td>
+      <td>
+        <div class="section-label">Full Fine-Tuning Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Load pretrained BERT + add classification head (1,538 new params for binary)</li>
+          <li>Tokenize + pad (DataCollatorWithPadding)</li>
+          <li>Set TrainingArguments (lr=2e-5, weight decay, epochs)</li>
+          <li>Train Trainer: forward + backward pass through all layers jointly</li>
+          <li>Evaluate on test set → F1 = 0.93</li>
+        </ul>
+        <div class="output-tag">Fine-tuned model weights; classification report</div>
+        <div class="eval-tag">Eval: F1 — frozen head-only: 0.63 / frozen BERT CLS: 0.81 / doc embeddings (W4): 0.83 / last 2 layers: 0.92 / full fine-tune: 0.93</div>
+        <div class="section-divider"></div>
+        <div class="section-label">SetFit Pipeline</div>
+        <ul class="pipeline-steps">
+          <li>Sample ~16 examples per class</li>
+          <li>Generate positive (in-class) &amp; negative (cross-class) sentence pairs</li>
+          <li>Fine-tune SentenceTransformer with contrastive learning</li>
+          <li>Train logistic regression head on fine-tuned embeddings</li>
+        </ul>
+        <div class="output-tag">Competitive classifier from ~32 total labelled examples</div>
+        <div class="section-divider"></div>
+        <div class="section-label">3-Step Domain Adaptation</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);line-height:2">
+          General BERT → <span style="color:#34d399">MLM on domain text</span> → Domain BERT → <span style="color:#34d399">Full SFT</span> → Task model
+        </div>
+        <div class="section-divider"></div>
+        <div class="section-label">BERT Pooler (exam detail)</div>
+        <div style="font-size:11.5px;color:var(--text-muted)">Despite the name, the BERT pooler does NOT pool across tokens — it applies a non-linear transformation to the [CLS] token only: <span style="font-family:'IBM Plex Mono',monospace;font-size:10px">h = tanh(W·cls + b)</span>. Mean pooling (across all tokens) outperforms CLS-only.</div>
+      </td>
+      <td>
+        <div class="limit-item">Full fine-tuning is compute-heavy (~110M params in BERT); needs sufficient labelled data</div>
+        <div class="limit-item">Freezing head-only gives F1 = 0.63 (vs 0.93 full); large performance cost for compute savings</div>
+        <div class="limit-item">Early encoder layers capture general language — mostly fine to freeze; later layers are task-specific and need updating</div>
+        <div class="limit-item">SetFit depends heavily on label quality; noisy labels cause large errors with so few examples</div>
+        <div class="limit-item">MLM domain adaptation adds another expensive training stage before fine-tuning</div>
+        <div class="limit-item">BERT pooler is confusingly named — does not pool; only transforms [CLS]</div>
+        <div class="limit-item">Adding new tokens (brand names) requires careful initialisation from similar words + separate training step</div>
+      </td>
+      <td>
+        <div class="next-item">Culmination of the course: W1–2 (understand text) → W3–4 (use embeddings) → W5 (prompt) → W6 (train your own model)</div>
+        <div class="next-item">Frozen embedding approach (W4) is one end of the spectrum; full fine-tuning (W6) is the other</div>
+        <div class="next-item">Domain adaptation (MLM) connects directly to BERT pretraining from W2</div>
+        <div class="next-item">SetFit's contrastive learning connects to SBERT embeddings (W3–4)</div>
+        <div class="mkt-tag">Build brand-specific classifiers outperforming generic models; apply same transformer architecture to customer journey or basket data for next-action prediction</div>
+      </td>
+      <td>
+        <div class="use-item">Have sufficient labelled data + compute → full fine-tuning (best F1 = 0.93)</div>
+        <div class="use-item">Very few labels (≤32 total) → SetFit (F1 ≈ 0.84 from just 32 examples)</div>
+        <div class="use-item">Domain-specific vocabulary not in pretrained model → MLM continued pretraining first</div>
+        <div class="use-item">Limited compute → freeze first 10 blocks, train last 2 + head (F1 = 0.92)</div>
+        <div class="use-not">No labels at all → use zero-shot prompting (W5) or zero-shot alignment (W3)</div>
+        <div class="use-not">Task changes frequently → use prompting (W5); fine-tuning requires retraining per task change</div>
+        <div class="section-label" style="margin-top:8px">Full fine-tune vs frozen head</div>
+        <div style="font-size:11.5px; color:var(--text-muted)">Frozen head-only = 0.63; last 2 layers = 0.92; full = 0.93. Later layers matter most — always unfreeze from the top down</div>
+      </td>
+      <td>
+        <div class="takeaway-item">Early encoder layers capture general language (don't need updating); later layers capture task-specific patterns — unfreezing just the last 2 blocks recovers most of full fine-tuning performance (0.92 vs 0.93)</div>
+        <div class="takeaway-item">The BERT pooler is misnamed — it does NOT pool across tokens; it only applies a non-linear transformation to [CLS]. Mean pooling (across all tokens) consistently outperforms CLS-only</div>
+        <div class="takeaway-item">The transformer architecture generalises beyond text — products in a basket are analogous to words in a sentence; the same MLM-style masked prediction applies to basket completion and customer journey modeling</div>
+      </td>
+      <td>
+        <div style="color:var(--text-dim); font-family:'IBM Plex Mono',monospace; font-size:10px; font-style:italic;">No required articles this week.</div>
+      </td>
+      <td>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Study Notes Q</div>
+          <div class="q-text">A company has 50,000 unlabelled reviews and only 30 manually labelled examples. Design a fine-tuning pipeline for sentiment classification.</div>
+          <div class="q-answer"><b>Answer</b> (1) Use the 50,000 unlabelled reviews for continued pretraining with MLM to domain-adapt BERT to the review vocabulary. (2) Apply SetFit with the 30 labelled examples: generate positive (in-class) and negative (cross-class) sentence pairs, fine-tune a SentenceTransformer with contrastive learning, then train a logistic regression classifier on the fine-tuned embeddings.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-real">📋 Study Notes Q</div>
+          <div class="q-text">A BERT fine-tuning run achieves F1 = 0.65. Investigation reveals all encoder blocks were frozen and only the classification head was trained. What should the analyst do?</div>
+          <div class="q-answer"><b>Answer</b> Unfreeze encoder blocks starting from the last (block 11, then 10, etc.) and retrain. The later blocks encode task-specific representations — even unfreezing just the last 2 blocks typically recovers most performance (F1 ≈ 0.92 vs 0.93 full fine-tune). The analyst should experiment to find the right trade-off between compute cost and performance gain.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Explain why mean pooling over all token embeddings outperforms using only the [CLS] token for document classification, and clarify what the "BERT pooler" actually does.</div>
+          <div class="q-answer"><b>Answer</b> Mean pooling averages the information from all tokens, capturing the full semantic content of the document. The [CLS] token only represents one position and may not accumulate all relevant signals, especially in longer texts. The BERT pooler is misleadingly named — it does NOT pool across tokens. It only applies a non-linear transformation (tanh(W·cls + b)) to the single [CLS] embedding, providing a better-calibrated input for the classification head but still discarding all other token information.</div>
+        </div>
+      </td>
+      <td>
+        <div class="kw-section-label">Concepts</div>
+        <div class="kw-grid">
+          <span class="kw">frozen LLM (Paradigm A)</span>
+          <span class="kw">fine-tuned LLM (Paradigm B)</span>
+          <span class="kw">frozen layers</span>
+          <span class="kw">trainable layers</span>
+          <span class="kw">backward pass</span>
+          <span class="kw">BERT pooler (≠ pooling)</span>
+          <span class="kw">CLS token</span>
+          <span class="kw">mean pooling vs CLS</span>
+          <span class="kw">contrastive learning</span>
+          <span class="kw">sentence pairs (pos/neg)</span>
+          <span class="kw">continued pretraining</span>
+          <span class="kw">MLM (masked LM)</span>
+          <span class="kw">token masking (15%)</span>
+          <span class="kw">domain adaptation</span>
+          <span class="kw">adding new tokens</span>
+          <span class="kw">loss function</span>
+          <span class="kw">overfitting</span>
+          <span class="kw">transformer for non-text</span>
+          <span class="kw">customer journey</span>
+          <span class="kw">basket analysis</span>
+        </div>
+        <div class="kw-section-label">Models &amp; Tools</div>
+        <div class="kw-grid">
+          <span class="kw">BERT (bert-base-cased)</span>
+          <span class="kw">classification head</span>
+          <span class="kw">SetFit</span>
+          <span class="kw">SentenceTransformer</span>
+          <span class="kw">Trainer (HuggingFace)</span>
+          <span class="kw">TrainingArguments</span>
+          <span class="kw">DataCollator</span>
+          <span class="kw">instruction tuning</span>
+          <span class="kw">RLHF</span>
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>
