@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notes — Sinem Kırcalı</title>
+<meta name="description" content="Notes from Sinem Kırcalı — short, cited reactions to things read about data science, AI, and marketing analytics." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-mark" href="index.html">SK</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="notes.html" aria-current="page">Notes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="section notes-hero">
+    <div class="section-inner">
+      <p class="section-label">Notes</p>
+      <h1 class="section-title">Reading, cited</h1>
+      <p class="section-intro">
+        Short, original reactions to things I've actually read — mostly data science, AI, and
+        marketing analytics. Every post cites its source; content in this section is rendered
+        from <code>data/posts.js</code>, so adding a new one is a copy-paste, not a rebuild.
+      </p>
+    </div>
+  </section>
+
+  <section class="section notes-list-section">
+    <div class="section-inner">
+      <div id="posts-list" class="posts-list">
+        <!-- Populated by js/notes.js from data/posts.js -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="section-inner">
+    <p>&copy; 2026 Sinem Kırcalı.</p>
+  </div>
+</footer>
+
+<script src="data/posts.js"></script>
+<script src="js/notes.js"></script>
+</body>
+</html>
