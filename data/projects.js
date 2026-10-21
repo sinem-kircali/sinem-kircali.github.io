@@ -314,6 +314,24 @@ const PROJECTS = [
     github: "https://github.com/sinem-kircali/marketing-mix-modeling",
     caseStudyUrl: null,
   },
+  {
+    id: "ab-testing-framing",
+    context: "Personal project · builds on a Behavioral Economics course experiment",
+    title: "A/B Testing a Product-Page Framing Change",
+    summary: "An end-to-end A/B/n test on simulated shop data: sample-size planning, validity checks, analysis and sequential monitoring.",
+    problem:
+      "A small framing survey from a Behavioral Economics course (about 58 respondents) was too underpowered to say anything. This project asks what a properly designed version would look like: a shop testing gain-framed, loss-framed or no material descriptions on product pages, with conversion as the primary metric. All data is simulated, so every estimate can be checked against a known true effect.",
+    approach:
+      "Planned the sample size from a minimum detectable effect, checked validity before reading any effect (sample ratio mismatch, covariate balance, A/A false positive rate), then analysed conversion with Holm correction, revenue with bootstrap and CUPED, and a return-rate guardrail with its own sensitivity calculation. Simulated daily peeking to show how it inflates false positives and compared Bonferroni with an always-valid mixture SPRT.",
+    tools: ["Python", "statsmodels", "SciPy", "Experiment Design", "CUPED", "Sequential Testing"],
+    outcome:
+      "Naive daily peeking raised the false positive rate from 5% to about 28%, while the mixture SPRT kept it near 1%. The guardrail could only detect return-rate increases of about 3.3 pp or more, and CUPED reduced variance by only 0.4%, both reported as limitations.",
+    metric: "102,000 simulated visitors",
+    icon: "pulse",
+    themes: ["stats", "marketing"],
+    github: "https://github.com/sinem-kircali/ab-testing-framing-experiment",
+    caseStudyUrl: null,
+  },
 
   // ---------------------------------------------------------------------------------------
   // Operations research, simulation & forecasting
