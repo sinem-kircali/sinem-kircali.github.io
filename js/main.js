@@ -112,6 +112,13 @@ function initProjectFilters(grid) {
   if (fromHash) fromHash.scrollIntoView();
 }
 
+/* One list item in a card's extra detail sections: a plain string, or a [bold lead, rest] pair. */
+function detailItemHTML(item) {
+  return Array.isArray(item)
+    ? `<li><strong>${escapeHTML(item[0])}</strong> ${escapeHTML(item[1])}</li>`
+    : `<li>${escapeHTML(item)}</li>`;
+}
+
 function projectCardHTML(p) {
   const tools = (p.tools || [])
     .map((t) => `<li>${escapeHTML(t)}</li>`)
@@ -142,8 +149,24 @@ function projectCardHTML(p) {
 
   const anchorId = "project-" + (p.id || slugify(p.title));
 
+  const detailBlock = (label, body) => `
+          <div>
+            <dt>${escapeHTML(label)}</dt>
+            <dd>${body}</dd>
+          </div>`;
+  const detailBlocks = [
+    detailBlock("Problem", escapeHTML(p.problem)),
+    detailBlock("Approach", escapeHTML(p.approach)),
+    ...(p.details || []).map((d) =>
+      detailBlock(d.label, d.items ? `<ul>${d.items.map(detailItemHTML).join("")}</ul>` : escapeHTML(d.text))
+    ),
+  ].join("");
+
+  const cardClass =
+    "project-card" + (p.details ? " project-card-wide" : "") + (p.comingSoon ? " project-card-coming-soon" : "");
+
   return `
-    <article id="${escapeHTML(anchorId)}" class="project-card${p.comingSoon ? " project-card-coming-soon" : ""}">
+    <article id="${escapeHTML(anchorId)}" class="${cardClass}">
       <div class="project-card-head">
         <span class="project-icon" aria-hidden="true">${projectIconSVG(p.icon)}</span>
         <div>
@@ -160,12 +183,8 @@ function projectCardHTML(p) {
       ${outcomeBlock}
 
       <details class="project-details">
-        <summary>Details</summary>
-        <dl>
-          <dt>Problem</dt>
-          <dd>${escapeHTML(p.problem)}</dd>
-          <dt>Approach</dt>
-          <dd>${escapeHTML(p.approach)}</dd>
+        <summary>${escapeHTML(p.detailsLabel || "Details")}</summary>
+        <dl>${detailBlocks}
         </dl>
       </details>
 
@@ -199,7 +218,7 @@ function projectIconSVG(type) {
 }
 
 /*
- * "Coming soon" badge for projects whose write-up isn't published yet (currently just the thesis).
+ * "Coming soon" badge for projects whose write-up isn't published yet (no card uses it right now).
  * Tries to load a GIF from assets/coming-soon.gif; if that file doesn't
  * exist yet, falls back to a small CSS dot-loader so nothing looks broken.
  * Drop a GIF at that path any time — no code changes needed.

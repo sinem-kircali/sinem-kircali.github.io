@@ -50,6 +50,10 @@ Then visit `http://localhost:8000`.
   the template at the bottom of the file — the grid re-renders automatically, no layout
   changes needed. The numbers on the cards come from each repo's README on GitHub. The competitor-pricing card stays anonymous (\"Company X\"), like its repo; the
   Coolblue timeline entry names the client.
+  The thesis card is longer than the rest: it uses `details` (extra blocks in the Details
+  section, each `{ label, text }` or `{ label, items: [...] }`) and `detailsLabel`, and a card
+  with `details` spans the full grid width. Its numbers come from the public thesis repo's
+  README and `output/` tables.
   - **Filter chips** — the grid opens on "Featured" and has an "All" chip plus one chip per
     theme (the same headings as the GitHub profile README). `featured: true` puts a card in the
     default view; `themes` (`ml`, `nlp`, `marketing`, `ops`, `stats`, `data`) sets which chips
@@ -105,20 +109,18 @@ change a logo, replace the file in `assets/logos/` — a transparent PNG or SVG;
 
 Logos are trademarks of their owners; the footer says so.
 
-### The "coming soon" badge (thesis project card)
+### The "coming soon" badge
 
-The thesis card shows an animated dot-loader with the line "Training finished. Write-up and repository coming soon." Drop a GIF at `assets/coming-soon.gif` any time and it'll replace the
+A project with `comingSoon: true` shows an animated dot-loader with the line "Training finished. Write-up and repository coming soon." in place of its outcome line. No card uses it right now (the thesis card did until its repository went public). Drop a GIF at `assets/coming-soon.gif` any time and it'll replace the
 loader automatically — no code changes needed.
 
 ### Remaining placeholders to fill in before publishing
 
 Search the codebase for `[PLACEHOLDER]` and `[YOUR_` to find every spot:
 
-- `data/projects.js`: the thesis project's `github` is `null` (the card says "Repository coming
-  soon") — add the link once the thesis repository is public
 - `assets/hobbies/piano.jpg`: a stand-in illustration of piano keys, not a real photo — swap in
   your own square photo any time; every other hobby card and the photo wall already have photos
-- `assets/coming-soon.gif`: optional, for the thesis card
+- `assets/coming-soon.gif`: optional, for any card that uses the coming-soon badge
 
 Contact info (email, LinkedIn, GitHub) is already filled in.
 

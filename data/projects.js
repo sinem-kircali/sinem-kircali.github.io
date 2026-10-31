@@ -16,6 +16,11 @@
  *   summary      - one-line summary shown on the card (string)
  *   problem      - the problem/context (string)
  *   approach     - what was done, methods/tools used (string)
+ *   details      - optional array of extra blocks for the Details section, shown after Problem and
+ *                  Approach: { label, text } for a paragraph, or { label, items: [...] } for a list
+ *                  (an item is a string, or a ["bold lead", "rest"] pair). A card with details
+ *                  spans the full grid width — the thesis uses this.
+ *   detailsLabel - optional text for the Details toggle on such a card (default "Details")
  *   tools        - array of strings, rendered as mono tags (e.g. ["Python", "XGBoost"])
  *   outcome      - impact/result statement (string)
  *   metric       - short headline stat shown next to the icon, mono font
@@ -182,21 +187,64 @@ const PROJECTS = [
   {
     id: "master-thesis",
     context: "Erasmus MSc · FEM11155 Master's Thesis",
-    title: "Master's Thesis — Delivery Performance & Customer Satisfaction",
-    summary: "Machine learning, statistical inference, and topic modeling applied to how delivery performance shapes customer satisfaction.",
+    title: "Delivery Timing & Customer Dissatisfaction in E-Commerce",
+    summary: "Is a day late worse than a day early, and does it differ by product category? An asymmetry analysis of 95,830 marketplace orders.",
     problem:
-      "Understanding how delivery performance shapes customer satisfaction, using retail/e-commerce transactional data (Olist-style dataset).",
+      "Shoppers know nearly everything before paying except when the order will arrive, so the promised delivery date becomes their benchmark. How much does delivery timing matter compared with everything else a marketplace knows about an order? Is a day late really worse than a day early, does that differ by product category, and what do dissatisfied customers write about?",
     approach:
-      "Combining machine learning, statistical inference, and topic modeling on e-commerce transactional data, under the supervision of Sara Bagheri at Erasmus University Rotterdam.",
-    tools: ["Python", "Machine Learning", "Statistical Inference", "Topic Modeling"],
+      "Three phases on one order-level dataset. Prediction: Random Forest, XGBoost and logistic regression, with drop-column importance and SHAP to rank what drives dissatisfaction. Inference: seller-clustered logistic regression with separate terms for lateness and earliness that let the effect change with the size of the deviation, a seller-cluster bootstrap, and category-interaction tests. Text: LDA topic modeling of 9,118 written complaints in Portuguese, with 50 random seeds for every topic count.",
+    tools: ["Python", "Random Forest & XGBoost", "SHAP", "Logistic Regression", "LDA Topic Modeling"],
     outcome:
-      "Completed as of 1 November 2026. Full write-up and results coming soon.",
-    metric: "Completed by 1 Nov 2026",
+      "Deviation from the promised date is the strongest predictor of dissatisfaction, overall and within all six product-category groups. The relationship is asymmetric: in the first week of lateness each late day multiplies the odds of a 1–2-star review by about 1.6, while each early day lowers them by about 5%. The pattern holds in every category, and late or missing orders dominate the written complaints. All results are observational associations, not causal effects.",
+    metric: "Late 62% vs early 9% dissatisfied",
+    detailsLabel: "Details: data, theory, results, implications",
+    details: [
+      {
+        label: "Data and construction",
+        text: "Public Olist marketplace data (Kaggle): eight linked tables merged into one row per order. Item prices and freight are summed, the first item gives the main product and seller, and the latest review is kept when an order has several. Orders with no delivery date (2,965) or no review score (646) are dropped, leaving 95,830 of 99,441 orders. Dissatisfied means a 1–2-star review (12.8% of orders). Delivery timing is the gap between actual and promised delivery in calendar days, because the promised date carries no time of day: 92.0% of orders arrive early, 1.3% on the day and 6.7% late. The 73 product categories are grouped into six, fixed before any hypothesis was tested.",
+      },
+      {
+        label: "Theory and hypotheses",
+        text: "Expectancy Disconfirmation Theory treats the promised date as the customer's benchmark, so what counts is the gap between promise and arrival. Prospect Theory adds that losses weigh more than equal gains, so a day late should hurt more than a day early helps. Four hypotheses follow. H1: delivery timing is the strongest structured predictor, overall and in every category. H2a: lateness is more strongly associated with dissatisfaction than equal earliness. H2b: the size of that asymmetry differs by category. H3: delivery problems are the main theme in written complaints.",
+      },
+      {
+        label: "Results",
+        items: [
+          [
+            "H1 supported.",
+            "Taking out the promised-date deviation cuts hold-out ROC-AUC from 0.750 to 0.637, about 19 times the loss from the next most important predictor. It ranks first in all six category groups, by drop-column importance and by SHAP.",
+          ],
+          [
+            "H2a supported.",
+            "62% of late orders get a 1–2-star review, against 9% of early ones. In the model, each late day in the first week multiplies the odds by about 1.6 and each early day lowers them by about 5%; after the first week the late-side effect flattens. A seller-cluster bootstrap (2,000 replications) confirms the asymmetry.",
+          ],
+          [
+            "H2b not supported.",
+            "The asymmetry is present in all six category groups (every p < 0.001), but its size does not differ significantly between them (joint Wald test, p = 0.51).",
+          ],
+          [
+            "H3 supported.",
+            "In 9,118 written complaints, a three-topic LDA model finds late or missing orders to be the dominant theme in 64% of them and the largest theme in every category. Product quality and mismatch, and incomplete orders, are the smaller themes.",
+          ],
+        ],
+      },
+      {
+        label: "Managerial implications",
+        text: "Prevent short delays before speeding up orders that already arrive early. Late orders are 6.7% of all orders but 32% of the dissatisfied ones, while 92% arrive early, 13.7 days ahead of the promise on average. Promise reliability and raw delivery speed are better treated as separate targets: track how often orders cross the promised date, which sellers or routes cause it and how long delays last, and ask whether the buffer built into the quoted delivery window is well balanced against the risk of lateness. The evidence does not support category-specific delivery rules; differences in the smaller complaint themes are signals to monitor, not a basis for separate service levels.",
+      },
+      {
+        label: "Limitations",
+        text: "Observational data, so associations rather than causal effects. One Brazilian marketplace (2016–2018) and only fulfilled orders with an observed delivery date. The binary outcome ignores differences between 3-, 4- and 5-star reviews. The text analysis covers the 75% of dissatisfied orders that include written text, and its finer topic structure is exploratory.",
+      },
+      {
+        label: "Reproducibility",
+        text: "The whole analysis, from the raw Olist tables to every table and figure in the thesis, runs in one notebook that is saved with its outputs, with fixed random seeds and pinned package versions. The raw Olist files are not redistributed; the README links to the download.",
+      },
+    ],
     icon: "trend",
-    themes: ["ml", "nlp"],
-    github: null,
+    themes: ["ml", "nlp", "stats", "marketing"],
+    github: "https://github.com/sinem-kircali/thesis",
     caseStudyUrl: null,
-    comingSoon: true,
   },
   {
     id: "spotify-hit-prediction",
