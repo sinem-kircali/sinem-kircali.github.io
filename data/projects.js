@@ -237,8 +237,8 @@ const PROJECTS = [
         text: "Observational data, so associations rather than causal effects. One Brazilian marketplace (2016–2018) and only fulfilled orders with an observed delivery date. The binary outcome ignores differences between 3-, 4- and 5-star reviews. The text analysis covers the 75% of dissatisfied orders that include written text, and its finer topic structure is exploratory.",
       },
       {
-        label: "Reproducibility",
-        text: "The whole analysis, from the raw Olist tables to every table and figure in the thesis, runs in one notebook that is saved with its outputs, with fixed random seeds and pinned package versions. The raw Olist files are not redistributed; the README links to the download.",
+        label: "Code",
+        text: "Selected parts of the analysis code are public: setup, data and sample construction, and the machine-learning models, saved with their outputs. The code for the asymmetry models, the category tests and the text analysis is not published, so that the implementation can't be copied and presented as someone else's work; it can be shared on request, for example for an interview. The result tables and figures of every phase are public.",
       },
     ],
     icon: "trend",
