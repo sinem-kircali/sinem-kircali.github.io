@@ -9,21 +9,22 @@
  *   date    - "YYYY-MM-DD" (string), shown in mono
  *   tags    - array of short strings, rendered as mono tags
  *   body    - array of paragraph strings (each rendered as its own <p>).
- *             Keep commentary original — paraphrase sources, don't quote
- *             more than a short phrase, and always cite.
- *   source  - { label, publication, date, url } — the article/report this
- *             post is responding to. Rendered as a citation line with a
- *             link. Always fill this in when a post references outside
- *             work — that's the whole point of this being a citation-first
- *             notes page, not just a diary.
- *   resource - optional { label, url }. Use instead of `source` for posts
- *              that link out to something self-authored (a study guide, a
- *              notebook, a write-up) rather than citing someone else's
- *              work. Rendered as a button-style link, not a citation line.
+ *             When reacting to someone else's work, keep commentary
+ *             original — paraphrase, don't quote more than a short phrase.
+ *   source  - optional { label, publication, date, url } — the article or
+ *             report a post is responding to. Rendered as a citation line
+ *             with a link. Fill this in whenever a post reacts to someone
+ *             else's work; leave it out for posts that are just your own
+ *             thoughts.
+ *   resource - optional { label, url }. Use for posts that link out to
+ *              something self-authored (a study guide, a notebook, a
+ *              write-up). Rendered as a button-style link, not a citation
+ *              line.
  *
- * This is meant to work like a lightweight, personal version of a LinkedIn
- * post: reactions to something read, tied back to real project experience.
- * Add a new entry to the POSTS array below, in the same shape, any time.
+ * Notes can be anything about data science, AI and data analysis: a reaction
+ * to something read, something learned, or just a thought. They work like a
+ * lightweight, personal version of a LinkedIn post. Add a new entry to the
+ * POSTS array below, in the same shape, any time.
  */
 
 const POSTS = [

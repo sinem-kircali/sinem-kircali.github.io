@@ -1,7 +1,7 @@
 # Sinem Kırcalı — Portfolio Site
 
 A static site (plain HTML/CSS/JS, no build step required) — `index.html` for the main portfolio,
-`notes.html` for a citation-first notes/blog page.
+`notes.html` for a notes/blog page.
 
 ## Structure
 
@@ -68,9 +68,10 @@ Then visit `http://localhost:8000`.
   and nudge the order if a row ends short. Phone photos carry GPS location in their metadata — re-save new ones as a fresh JPEG
   (or export without location) before adding them, as was done for the current photos.
 - **Notes / blog posts** — edit `data/posts.js`. Each entry has `title`, `date`, `tags`, `body`
-  (array of paragraphs), and either `source` (citing an external article — renders a citation
+  (array of paragraphs), and optionally `source` (citing an external article — renders a citation
   line) or `resource` (linking to something self-authored, like the exam table — renders a
-  button). Keep citing sources properly if a post reacts to someone else's work.
+  button). A note can also be just a thought, with neither. Keep citing sources properly if a
+  post reacts to someone else's work.
 - **Bio / experience / skills / "why data" / "looking for" copy** — edit directly in
   `index.html`. "Open to work" appears twice: the `status-box` under the portrait in the
   About section and the `status-pill` in the hero. Reword or remove both when that changes (the
