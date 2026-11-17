@@ -1163,6 +1163,54 @@ button:focus-visible,
   gap: var(--space-3);
 }
 
+/* short volunteering list under the hobby cards */
+.volunteering {
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.volunteering-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+.volunteering-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 46rem;
+}
+
+.volunteering-list li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}
+
+.volunteering-year {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-grey);
+  padding-top: 0.2em;
+}
+
+@media (max-width: 520px) {
+  .volunteering-list li {
+    grid-template-columns: 1fr;
+    gap: 0.2em;
+  }
+}
+
 .hobby-card {
   margin: 0;
   display: flex;
