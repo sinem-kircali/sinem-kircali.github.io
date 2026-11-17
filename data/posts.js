@@ -29,16 +29,22 @@
 
 const POSTS = [
   {
-    title: "An Exam Study Table for LLMs in Marketing",
+    title: "A Study Table for LLMs in Marketing",
     date: "2026-08-27",
-    tags: ["Study Notes", "LLMs", "Course Material"],
+    tags: ["Study Notes", "LLMs", "Marketing"],
     body: [
-      "I put together a structured study table while preparing for the LLM Marketing course (FEM11154) at Erasmus University Rotterdam — six weeks of material, from word embeddings through fine-tuning, organized by topic, method, pipeline, limitations, and practice questions, cross-referenced against the required readings for each week.",
-      "Sharing it here in case it's useful to anyone covering similar ground: text representation, transformer architecture, prompting, and fine-tuning for marketing applications. It's my own synthesis of the course material and required readings, built as an exam-prep reference rather than a reproduction of any single source.",
+      "While studying for a course on LLMs in marketing, I put together a six-page study table for myself. It goes from word embeddings and transformers through text classification and topic modelling to prompting and fine-tuning, and for each topic it sets out the methods, the pipeline, the limitations and when to choose one approach over another.",
+      "It's written in my own words and inspired by Hands-On Large Language Models (Alammar & Grootendorst, 2024). The papers it discusses are linked in the table, and the original papers behind the models it mentions are listed at the bottom.",
     ],
     resource: {
-      label: "Open the full exam table",
-      url: "notes/llm-marketing-exam-table.html",
+      label: "Open the study table",
+      url: "notes/llm-marketing-study-table.html",
+    },
+    source: {
+      label: "Hands-On Large Language Models",
+      publication: "Jay Alammar & Maarten Grootendorst, O'Reilly Media",
+      date: "2024",
+      url: "https://www.oreilly.com/library/view/hands-on-large/9781098150952/",
     },
   },
   {

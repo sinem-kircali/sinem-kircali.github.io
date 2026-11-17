@@ -15,7 +15,8 @@ portfolio/
 ├── data/projects.js                    # EDIT THIS to add/update project entries
 ├── data/hobbies.js                     # EDIT THIS to add/update hobby cards
 ├── data/posts.js                       # EDIT THIS to add/update notes/blog posts
-├── notes/llm-marketing-exam-table.html # standalone resource linked from a notes post
+├── notes/llm-marketing-study-table.html # standalone resource linked from a notes post
+├── notes/llm-marketing-exam-table.html  # redirect to the study table (old address)
 ├── assets/profile.jpg                  # portrait shown in the About section (swap in a higher-res one any time)
 ├── assets/hobbies/                     # drop hobby photos here (see below)
 ├── assets/logos/                       # company/university logos beside each experience entry (see below)
@@ -69,7 +70,7 @@ Then visit `http://localhost:8000`.
   (or export without location) before adding them, as was done for the current photos.
 - **Notes / blog posts** — edit `data/posts.js`. Each entry has `title`, `date`, `tags`, `body`
   (array of paragraphs), and optionally `source` (citing an external article — renders a citation
-  line) or `resource` (linking to something self-authored, like the exam table — renders a
+  line) or `resource` (linking to something self-authored, like the study table — renders a
   button). A note can also be just a thought, with neither. Keep citing sources properly if a
   post reacts to someone else's work.
 - **Bio / experience / skills / "why data" / "looking for" copy** — edit directly in
@@ -149,6 +150,6 @@ No build step, no config file needed — GitHub Pages serves the static files as
 - Fonts (Newsreader, Inter, IBM Plex Mono) load from Google Fonts via `<link>` tags — free, no API key needed.
 - The hero animation and timeline reveal respect `prefers-reduced-motion`.
 - All colors/type are CSS custom properties in `css/style.css`, so a full re-theme only touches that one file.
-- `notes/llm-marketing-exam-table.html` intentionally keeps its own dark, data-dense visual style
+- `notes/llm-marketing-study-table.html` intentionally keeps its own dark, data-dense visual style
   rather than matching the portfolio theme — it's a functional study reference, not a showcase
   piece, and it's linked out to (opens in a new tab) rather than embedded inline.
