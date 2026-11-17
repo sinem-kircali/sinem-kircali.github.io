@@ -809,6 +809,16 @@
       <td>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A researcher embeds airline reviews and finds cos(Airline A, "reliable") = 0.58 and cos(Airline B, "reliable") = 0.41. She concludes that Airline A is more reliable. What should she check before accepting this?</div>
+          <div class="q-answer"><b>Answer</b> The result only says that reviewers write about Airline A in a way that sits closer to "reliable" — not that the airline is actually more reliable (reliability vs validity). She should check how many reviews each airline has and whether the samples are comparable (reviews skew toward extreme opinions), whether the gap survives resampling or a different embedding model, and compare against other attributes instead of reading one score in isolation. It is an association in how people write, not evidence of causal quality.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">Why does a bag-of-words model give "The hotel was good, not cheap" and "The hotel was cheap, not good" the same representation, and what would you use instead if word order matters?</div>
+          <div class="q-answer"><b>Answer</b> Bag-of-words records only which words occur and how often, not where they occur, so both sentences collapse into one and the same count vector although their meanings are opposite. Order-aware representations separate them: n-grams capture some local order, and contextual embeddings (BERT, SBERT) encode each word in the context of its neighbours.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">Two word embeddings are: w_hotel = [0.8, 0.6] and w_room = [0.6, 0.8]. (a) Write the cosine similarity formula. (b) Compute the similarity between these two words. (c) What does this value tell you in a marketing context?</div>
           <div class="q-answer"><b>Answer (a)</b> cos(w_i, w_j) = (w_i · w_j) / (||w_i|| × ||w_j||). <b>Answer (b)</b> Dot product: (0.8×0.6) + (0.6×0.8) = 0.96. ||w_hotel|| = √(0.64+0.36) = 1.0. ||w_room|| = 1.0. Cosine = 0.96/1.0 = 0.96. <b>Answer (c)</b> Very high similarity (close to 1) means "hotel" and "room" appear in very similar contexts in the training corpus — reviewers tend to use them together, making them semantically related in this domain.</div>
         </div>
@@ -937,6 +947,11 @@
         <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim); font-style:italic;">No key articles for this topic.</div>
       </td>
       <td>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">The word "bank" appears in "The bank approved the loan" and in "The bank of the river was steep". Explain how a transformer ends up with different vectors for "bank" in the two sentences, and what the attention part and the MLP part of a block each contribute.</div>
+          <div class="q-answer"><b>Answer</b> Self-attention lets each token mix in information from the other tokens in the sentence, so "bank" is pulled toward "loan" in one sentence and toward "river" in the other — this is where context enters. The MLP then processes each token's vector on its own and is where much of the learned knowledge is thought to be stored. Each part's output is added back onto the token's vector (a residual connection), so later blocks see both the original and the updated information.</div>
+        </div>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">Walk through the two steps of self-attention for a single token. (a) How are the attention weights computed from Q and K? (b) How are these weights used with V to produce the output? (c) Why is the result divided by √d_k?</div>
@@ -1071,6 +1086,16 @@
         <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-dim); font-style:italic;">No key articles for this topic.</div>
       </td>
       <td>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">You score hotel reviews by their cosine similarity to the sentence "The staff was friendly". Furious reviews about rude staff score just as high as glowing ones. Explain (a) why this happens and (b) how you would turn the score into a sentiment direction.</div>
+          <div class="q-answer"><b>Answer (a)</b> Cosine similarity measures how close a review is in meaning and topic, not how positive it is — both kinds of review are about the staff. <b>Answer (b)</b> Compare against two opposite anchors and subtract: cos(review, "The staff was friendly") − cos(review, "The staff was rude"). A positive difference signals positive sentiment and a negative one negative sentiment; the raw scores alone only show how much the review is about staff.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">You want to classify review sentiment and have about 2,000 labelled reviews. You compare (1) averaged GloVe vectors + logistic regression, (2) SBERT embeddings + logistic regression and (3) a zero-shot prompt. Which do you expect to do best, and what could change the ranking?</div>
+          <div class="q-answer"><b>Answer</b> Usually SBERT + logistic regression: sentence embeddings capture context and meaning, and the classifier is trained on your own labels. Averaged GloVe vectors are static and lose word order, so they miss negation and context. Zero-shot needs no labels but depends on how well the model and the label wording fit your domain. The ranking can change with the amount and quality of the labels, with domain mismatch (a model trained on tweets used on hotel reviews) and with the metric you choose.</div>
+        </div>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">A researcher builds a perceptual map using prototype sentences and document embeddings. She includes "This is a positive review" as one of the attribute arrows. Explain why this is problematic and how she should select attributes for a meaningful perceptual map.</div>
@@ -1236,6 +1261,11 @@
         </div>
       </td>
       <td>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">You have 20,000 restaurant reviews with star ratings and want to know which aspects drive satisfaction. Outline the pipeline from raw text to a ranked list of drivers and say what each step does.</div>
+          <div class="q-answer"><b>Answer</b> (1) Embed each review or sentence with SBERT. (2) Reduce the dimensions (UMAP) and cluster (HDBSCAN) to find topics without predefining them. (3) Describe each topic with c-TF-IDF keywords, optionally labelled by an LLM, and read example reviews to check the labels. (4) Score the sentiment of the text assigned to each topic with a classifier. (5) Relate the star ratings to topic-level sentiment, for example with a logistic regression, to rank the drivers of satisfaction.</div>
+        </div>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">A logit model predicting happy/unhappy reviews includes both "bathroom sentiment" (coef = 9.16) and "great hotel sentiment" (coef = 6.30). A manager argues the model confirms bathroom is the most actionable driver. What concern would you raise?</div>
@@ -1442,6 +1472,11 @@
       <td>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">An LLM screens CVs and gives a chain-of-thought explanation for each decision. None of the explanations mentions the applicant's age. A manager says this proves age played no role. (a) Why is that conclusion unsafe? (b) How would you test whether age affects the decisions?</div>
+          <div class="q-answer"><b>Answer (a)</b> Chain-of-thought explanations can be unfaithful: models have been shown to be influenced by factors they never mention, so a factor that never appears in the explanation may still have shaped the decision. <b>Answer (b)</b> Test the decisions, not the explanations: submit pairs of otherwise identical CVs that differ only in age, measure how often the decision changes, and test the difference statistically over many pairs. A pattern of different outcomes would show that age matters even if the explanations never say so.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">Turpin et al. (2023) and Barez et al. (2025) both argue that chain-of-thought explanations are unfaithful. (a) What is the core claim? (b) How did Turpin et al. arrive at this conclusion — describe their method at a high level.</div>
           <div class="q-answer"><b>Answer (a)</b> The core claim is that CoT explanations produced by LLMs do not necessarily reflect how the model actually reached its answer. The explanation is generated output that resembles reasoning, not a true record of the model's internal computation. <b>Answer (b)</b> Turpin et al. introduced biasing features into prompts — such as suggesting a particular answer or always making the correct answer option A in few-shot examples. They then checked whether (1) the model changed its answer based on the hint and (2) whether the CoT explanation acknowledged using the hint. Finding that answers changed but hints were never mentioned in the CoT constitutes evidence of unfaithfulness.</div>
         </div>
@@ -1595,6 +1630,16 @@
         <div style="color:var(--text-dim); font-family:'IBM Plex Mono',monospace; font-size:10px; font-style:italic;">No key articles for this topic.</div>
       </td>
       <td>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">You have 40,000 unlabelled support tickets and time to label only a few dozen of them. How would you build a ticket-priority classifier, and what is the main risk?</div>
+          <div class="q-answer"><b>Answer</b> Use a few-shot approach such as SetFit: label a handful of tickets per priority class (say 10–20), build positive and negative pairs from them, fine-tune a sentence-transformer contrastively on those pairs, and finally fit a small classification head on the resulting embeddings. A simpler baseline is SBERT embeddings plus logistic regression on the labelled tickets. The main risk is label quality and representativeness: with so few examples a handful of noisy or unrepresentative labels can distort the model, so keep a separate labelled check set and review the errors.</div>
+        </div>
+        <div class="q-block">
+          <div class="q-label q-label-gen">✦ Practice Q</div>
+          <div class="q-text">A team fine-tunes BERT for review classification, but the results barely beat a simple baseline. On inspection, the pretrained encoder was never updated: only the new classification layer on top received training updates. What should they change, and what does it cost?</div>
+          <div class="q-answer"><b>Answer</b> Unfreeze the encoder — at least the last layers, ideally all of it — and train it jointly with the classification head using a small learning rate. Head-only training can only reuse the generic representations BERT already has, so adapting the encoder usually gives a large gain. The costs are more compute, a higher risk of overfitting on small datasets (use early stopping and a validation set) and the risk of overwriting useful pretrained knowledge if the learning rate is too high.</div>
+        </div>
         <div class="q-block">
           <div class="q-label q-label-gen">✦ Practice Q</div>
           <div class="q-text">Explain why mean pooling over all token embeddings outperforms using only the [CLS] token for document classification, and clarify what the "BERT pooler" actually does.</div>
