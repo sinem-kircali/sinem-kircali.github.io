@@ -155,5 +155,5 @@ No build step, no config file needed — GitHub Pages serves the static files as
 - `notes/llm-marketing-study-table.html` intentionally keeps its own dark, data-dense visual style
   rather than matching the portfolio theme — it's a functional study reference, not a showcase
   piece, and it's linked out to (opens in a new tab) rather than embedded inline.
-  `notes/dsma-study-notes.html` does the same with its own light layout; all 27 diagrams are
+  `notes/dsma-study-notes.html` does the same with its own light layout; all 28 diagrams are
   embedded in the file, so it works on its own.
