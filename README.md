@@ -75,9 +75,10 @@ Then visit `http://localhost:8000`.
   button). A note can also be just a thought, with neither. Keep citing sources properly if a
   post reacts to someone else's work.
 - **Bio / experience / skills / "why data" / "looking for" copy** — edit directly in
-  `index.html`. "Open to work" appears twice: the `status-box` under the portrait in the
-  About section and the `status-pill` in the hero. Reword or remove both when that changes (the
-  Contact and "What I'm looking for" sections also name the target roles).
+  `index.html`. The "Open to work" hero pill (`status-pill`), the About status box (`status-box`)
+  and the Contact intro line were removed when a new job was coming up; their styles stay in
+  `css/style.css`, so adding the HTML back brings them back. The "What I'm looking for" section and
+  the last About paragraph still describe a job search — revisit them when the new role is public.
 - **Profile photo** — replace `assets/profile.jpg`. It's shown in a circle, so use a **square**
   image with the face in the center. The current file is a square crop with the background
   blurred; keep the original unblurred photo somewhere that isn't published.
