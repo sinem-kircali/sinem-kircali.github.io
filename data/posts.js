@@ -29,12 +29,13 @@
 
 const POSTS = [
   {
-    title: "Study Notes on Data Science and Marketing Analytics",
+    title: "AI Can Write the Code. But Do You Understand What It's Doing?",
     date: "2026-11-20",
     tags: ["Study Notes", "Machine Learning", "Marketing Analytics"],
     body: [
-      "I'm new to data science. These are the notes I compiled and studied from during my master's: they bring machine learning models and the models used in marketing together, from the foundations (probability, bias and variance) through supervised and unsupervised learning, customer lifetime value, conjoint and pricing, to text analytics, model evaluation and A/B testing.",
-      "I think this foundation should be in place before a case interview and before starting a role. AI can write the code, but you still need the concepts to understand what it did and whether to trust it. The concepts are the language of the field, and these notes are how I learned to speak it. Every section links to the videos and articles I found most useful.",
+      "One thing I've come to appreciate throughout my MSc in Data Science & Marketing Analytics at Erasmus University Rotterdam is that knowing how to build a model and knowing whether to trust its results are two different skills. With AI making coding more accessible than ever, understanding the underlying concepts is becoming even more important. We still need to know which questions to ask, which methods to choose, what assumptions we're making, and how to interpret the results. AI can help us implement a model, but it doesn't remove our responsibility to understand whether that model makes sense in the first place.",
+      "Coming from an Industrial Engineering and Economics background, I wanted to build that conceptual foundation as I transitioned into data science. Rather than simply memorizing algorithms or learning how to implement them, I tried to focus on the intuition behind each method, when to use it, and what its limitations are. To me, these concepts are the language of data science, and these notes are how I learned to speak it.",
+      "The notes bring together machine learning and marketing analytics: statistical foundations (probability, distributions, correlation vs. causation, the bias-variance tradeoff); machine learning (regression, classification, clustering, ensemble methods, neural networks, model evaluation); marketing analytics (customer segmentation, customer lifetime value, conjoint analysis, pricing and promotion analytics); NLP and text analytics (embeddings, transformers, sentiment analysis, topic modelling); and business applications (A/B testing, translating business problems into ML problems, communicating insights). Each section links to the videos, articles and resources I found most helpful. I'm sharing them in case they're useful to anyone building their data science foundation, preparing for technical or case interviews, or looking for a structured refresher before starting a new role.",
     ],
     resource: {
       label: "Open the study notes",
