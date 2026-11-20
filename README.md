@@ -17,6 +17,7 @@ portfolio/
 ├── data/posts.js                       # EDIT THIS to add/update notes/blog posts
 ├── notes/llm-marketing-study-table.html # standalone resource linked from a notes post
 ├── notes/llm-marketing-exam-table.html  # redirect to the study table (old address)
+├── notes/dsma-study-notes.html          # standalone study notes (diagrams embedded), linked from a notes post
 ├── assets/profile.jpg                  # portrait shown in the About section (swap in a higher-res one any time)
 ├── assets/hobbies/                     # drop hobby photos here (see below)
 ├── assets/logos/                       # company/university logos beside each experience entry (see below)
@@ -153,3 +154,5 @@ No build step, no config file needed — GitHub Pages serves the static files as
 - `notes/llm-marketing-study-table.html` intentionally keeps its own dark, data-dense visual style
   rather than matching the portfolio theme — it's a functional study reference, not a showcase
   piece, and it's linked out to (opens in a new tab) rather than embedded inline.
+  `notes/dsma-study-notes.html` does the same with its own light layout; all 27 diagrams are
+  embedded in the file, so it works on its own.

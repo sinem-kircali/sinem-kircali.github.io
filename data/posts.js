@@ -29,6 +29,19 @@
 
 const POSTS = [
   {
+    title: "Study Notes on Data Science and Marketing Analytics",
+    date: "2026-11-20",
+    tags: ["Study Notes", "Machine Learning", "Marketing Analytics"],
+    body: [
+      "I'm new to data science. These are the notes I compiled and studied from during my master's: they bring machine learning models and the models used in marketing together, from the foundations (probability, bias and variance) through supervised and unsupervised learning, customer lifetime value, conjoint and pricing, to text analytics, model evaluation and A/B testing.",
+      "I think this foundation should be in place before a case interview and before starting a role. AI can write the code, but you still need the concepts to understand what it did and whether to trust it. The concepts are the language of the field, and these notes are how I learned to speak it. Every section links to the videos and articles I found most useful.",
+    ],
+    resource: {
+      label: "Open the study notes",
+      url: "notes/dsma-study-notes.html",
+    },
+  },
+  {
     title: "A Study Table for LLMs in Marketing",
     date: "2026-08-27",
     tags: ["Study Notes", "LLMs", "Marketing"],
